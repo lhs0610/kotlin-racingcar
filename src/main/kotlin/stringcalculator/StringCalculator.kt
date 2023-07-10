@@ -6,17 +6,17 @@ import stringcalculator.enums.Operator
 import java.util.*
 
 class StringCalculator {
-    fun calculate(expression: String?): Int {
+    fun calculate(expression: String?): Double {
         val splits = expression?.split(DELIMITER)
             ?: throw IllegalArgumentException(INVALID_INPUT_NULL.message)
 
         validateEmpty(expression)
 
         val queue: Queue<String> = LinkedList(splits)
-        var result = queue.poll().toInt()
+        var result = queue.poll().toDouble()
         while (queue.isNotEmpty()) {
             val operator = Operator.of(queue.poll())
-            val operand = queue.poll().toInt()
+            val operand = queue.poll().toDouble()
 
             result = operator.calculate(result, operand)
         }
