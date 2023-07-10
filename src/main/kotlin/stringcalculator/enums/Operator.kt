@@ -1,6 +1,6 @@
-package stringcalculator
+package stringcalculator.enums
 
-import java.lang.IllegalArgumentException
+import stringcalculator.constants.ErrorType
 
 enum class Operator(
     private val symbol: String,
@@ -17,7 +17,7 @@ enum class Operator(
     companion object {
         fun of(input: String): Operator {
             return values().firstOrNull { operator -> operator.symbol == input }
-                ?: throw IllegalArgumentException("Invalid symbol.")
+                ?: throw IllegalArgumentException(ErrorType.INVALID_OPERATOR.message)
         }
     }
 }

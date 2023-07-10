@@ -2,8 +2,10 @@ package stringcalculator
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
-import java.lang.IllegalArgumentException
+import io.kotest.matchers.string.startWith
+import stringcalculator.constants.ErrorType.*
 
 class StringCalculatorTest : BehaviorSpec({
     Given("두 개의 숫자를 더하는 식을 문자열로 제공한다.") {
@@ -128,17 +130,19 @@ class StringCalculatorTest : BehaviorSpec({
         When("문자열 계산기를 이용할 때") {
             val calculator = StringCalculator()
             Then("예외를 던진다.") {
-                shouldThrow<IllegalArgumentException> { calculator.calculate(input) }
+                val exception = shouldThrow<IllegalArgumentException> { calculator.calculate(input) }
+                exception.message should startWith(INVALID_INPUT_NULL.message)
             }
         }
     }
 
     Given("빈 문자열을 제공한다.") {
-        val input = " "
+        val input = ""
         When("문자열 계산기를 이용할 때") {
             val calculator = StringCalculator()
             Then("예외를 던진다.") {
-                shouldThrow<IllegalArgumentException> { calculator.calculate(input) }
+                val exception = shouldThrow<IllegalArgumentException> { calculator.calculate(input) }
+                exception.message should startWith(INVALID_INPUT_BLANK.message)
             }
         }
     }
@@ -148,7 +152,8 @@ class StringCalculatorTest : BehaviorSpec({
         When("문자열 계산기를 이용할 때") {
             val calculator = StringCalculator()
             Then("예외를 던진다.") {
-                shouldThrow<IllegalArgumentException> { calculator.calculate(input) }
+                val exception = shouldThrow<IllegalArgumentException> { calculator.calculate(input) }
+                exception.message should startWith(INVALID_OPERATOR.message)
             }
         }
     }

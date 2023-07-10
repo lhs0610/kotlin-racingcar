@@ -1,12 +1,16 @@
 package stringcalculator
 
-import java.util.LinkedList
-import java.util.Queue
+import stringcalculator.constants.ErrorType.INVALID_INPUT_BLANK
+import stringcalculator.constants.ErrorType.INVALID_INPUT_NULL
+import stringcalculator.enums.Operator
+import java.util.*
 
 class StringCalculator {
     fun calculate(expression: String?): Int {
         val splits = expression?.split(DELIMITER)
-            ?: throw IllegalArgumentException("Invalid input.")
+            ?: throw IllegalArgumentException(INVALID_INPUT_NULL.message)
+
+        validateEmpty(expression)
 
         val queue: Queue<String> = LinkedList(splits)
         var result = queue.poll().toInt()
@@ -18,6 +22,12 @@ class StringCalculator {
         }
 
         return result
+    }
+
+    private fun validateEmpty(input: String) {
+        if (input.isBlank()) {
+            throw IllegalArgumentException(INVALID_INPUT_BLANK.message)
+        }
     }
 
     companion object {
