@@ -21,5 +21,10 @@ class ComponentTest : ExpectSpec({
 
             val calculator = StringBasedCalculator(StringConstant.EMPTY)
         }
+
+        expect("잘못된 입력값 테스트: null") {
+
+            val calculator = StringBasedCalculator(null)
+        }
     }
 })
