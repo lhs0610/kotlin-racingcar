@@ -20,8 +20,8 @@ class StringBasedCalculator(
             Operators.getOperators().contains(it)
         }
 
-        operators = separate[true]!!
-        numbers = separate[false]!!
+        operators = separate[true] ?: mutableListOf()
+        numbers = separate[false] ?: mutableListOf()
     }
 
     fun calculate(): Int {

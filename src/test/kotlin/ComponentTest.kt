@@ -28,6 +28,12 @@ class ComponentTest : ExpectSpec({
             val calculator = StringBasedCalculator(null)
         }
 
+        expect("잘못된 입력값 테스트: 목록에 없는 연산 기호") {
+
+            val calculator = StringBasedCalculator("1 % 4")
+            calculator.calculate()
+        }
+
         expect("더하기 연산 테스트") {
 
             val calculator = StringBasedCalculator("1 + 2 + 3")
