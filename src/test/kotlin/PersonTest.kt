@@ -3,7 +3,6 @@ import io.kotest.core.spec.DisplayName
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.types.shouldBeTypeOf
 
 private const val NAME: String = "정종욱"
 
@@ -14,7 +13,7 @@ private const val NAME: String = "정종욱"
  * It : 결과
  **/
 @DisplayName("Step 1")
-class RacingTest : DescribeSpec({
+class PersonTest : DescribeSpec({
 
     describe("Person") {
         context("객체를 생성하면") {
