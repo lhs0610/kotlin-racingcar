@@ -2,8 +2,7 @@ package utilities
 
 import constant.StringConstant
 import enums.Operators
-import enums.Operators.MINUS
-import enums.Operators.PLUS
+import enums.Operators.*
 
 class StringBasedCalculator(
     expression: String?,
@@ -50,6 +49,7 @@ class StringBasedCalculator(
         return when(operator) {
             PLUS.operator -> prefix + postfix
             MINUS.operator -> prefix - postfix
+            MULTIPLY.operator -> prefix * postfix
             else -> throw IllegalArgumentException("허용되지 않은 사칙연산 기호 \'${operator}\'가 포함되어 있습니다.")
         }
     }

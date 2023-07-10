@@ -38,7 +38,7 @@ class ComponentTest : ExpectSpec({
             result shouldBe 6
         }
 
-        expect("뺄셈 테스트") {
+        expect("빼기 연산 테스트") {
 
             val calculator = StringBasedCalculator("6 - 3")
             val result = calculator.calculate()
@@ -46,6 +46,16 @@ class ComponentTest : ExpectSpec({
             println(result)
 
             result shouldBe 3
+        }
+
+        expect("곱하기 연산 테스트") {
+
+            val calculator = StringBasedCalculator("-1 * 2 * 3")
+            val result = calculator.calculate()
+
+            println(result)
+
+            result shouldBe -6
         }
     }
 })
