@@ -73,5 +73,14 @@ class ComponentTest : ExpectSpec({
 
             result shouldBe 2
         }
+
+        expect("사칙 연산 테스트") {
+            val calculator = StringBasedCalculator("1 + 3 - 2 * 4 / 8")
+            val result = calculator.calculate()
+
+            println(result)
+
+            result shouldBe 1
+        }
     }
 })
