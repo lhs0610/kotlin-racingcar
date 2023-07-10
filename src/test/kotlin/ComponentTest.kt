@@ -57,5 +57,15 @@ class ComponentTest : ExpectSpec({
 
             result shouldBe -6
         }
+
+        expect("나누기 연산 테스트") {
+
+            val calculator = StringBasedCalculator("20 / 5 / 2")
+            val result = calculator.calculate()
+
+            println(result)
+
+            result shouldBe 2
+        }
     }
 })

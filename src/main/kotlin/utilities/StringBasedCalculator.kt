@@ -50,6 +50,7 @@ class StringBasedCalculator(
             PLUS.operator -> prefix + postfix
             MINUS.operator -> prefix - postfix
             MULTIPLY.operator -> prefix * postfix
+            DIVIDE.operator -> prefix / postfix
             else -> throw IllegalArgumentException("허용되지 않은 사칙연산 기호 \'${operator}\'가 포함되어 있습니다.")
         }
     }
