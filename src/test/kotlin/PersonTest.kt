@@ -9,7 +9,7 @@ private const val NICK_NAME: String = "종구"
 class PersonTest : DescribeSpec({
 
     describe("Person") {
-        context("named parameter 로 객체를 생성하여") {
+        context("named parameter 로 객체를 생성하면") {
             val person = Person(name = NAME, age = 31, nickname = NICK_NAME)
             it("이름이 일치하는지 확인한다") {
                 person.name shouldBe NAME
@@ -24,9 +24,10 @@ class PersonTest : DescribeSpec({
         context("data class 객체를 생성하면") {
             val person1 = Person(name = NAME, age = 31, null)
             val person2 = Person(name = NAME, age = 31, null)
+            val copyPerson1 = person1.copy()
             it("data class 로 생성하여 정상동작을 확인한다") {
-                (person1 == person2) shouldBe true
-                (person1 === person2) shouldBe false
+                person1 shouldBe person2
+                person1 shouldBe copyPerson1
             }
         }
     }
