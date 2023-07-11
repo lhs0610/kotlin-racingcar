@@ -1,4 +1,5 @@
 package stringcalculator.domain
 
-interface ExtractPolicy {
+interface ExtractPolicy<T> {
+    fun extract(expString: List<String>): T
 }

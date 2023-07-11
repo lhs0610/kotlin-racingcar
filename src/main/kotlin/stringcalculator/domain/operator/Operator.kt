@@ -1,4 +1,4 @@
-package stringcalculator.enums
+package stringcalculator.domain.operator
 
 import stringcalculator.constants.ErrorType.INVALID_DIVIDE_OPERAND
 import stringcalculator.constants.ErrorType.INVALID_OPERATOR

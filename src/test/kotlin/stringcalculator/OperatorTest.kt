@@ -6,7 +6,7 @@ import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.startWith
 import stringcalculator.constants.ErrorType.INVALID_OPERATOR
-import stringcalculator.enums.Operator
+import stringcalculator.domain.operator.Operator
 
 class OperatorTest : BehaviorSpec({
     Given("더하기 연산자를 제공한다.") {

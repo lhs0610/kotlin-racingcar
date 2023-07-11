@@ -1,4 +1,6 @@
-package stringcalculator.domain
+package stringcalculator.domain.expression
+
+import stringcalculator.domain.SplitPolicy
 
 class SpaceSplitPolicy : SplitPolicy {
     override fun split(expression: String): List<String> = expression.split(DELIMITER)

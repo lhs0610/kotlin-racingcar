@@ -1,14 +1,15 @@
-package stringcalculator.domain
+package stringcalculator.domain.expression
 
 import stringcalculator.constants.ErrorType.INVALID_EXPRESSION
-import stringcalculator.enums.Operator
+import stringcalculator.domain.operand.Operand
+import stringcalculator.domain.operator.Operator
 
 class Expression (
     private val operators: ArrayDeque<Operator>,
     private val operands: ArrayDeque<Operand>
 ) {
     init {
-        require(operands.size == operators.size - 1) {
+        require(operands.size == operators.size + 1) {
             INVALID_EXPRESSION.message
         }
     }
