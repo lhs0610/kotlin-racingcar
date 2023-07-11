@@ -1,11 +1,12 @@
 package stringcalculator.domain.expression
 
-import stringcalculator.domain.operand.OperandExtractPolicy
-import stringcalculator.domain.operator.OperatorExtractPolicy
+import stringcalculator.domain.ExtractPolicy
+import stringcalculator.domain.operand.Operand
+import stringcalculator.domain.operator.Operator
 
 class ExpressionExtractor(
-    private val operandExtractPolicy: OperandExtractPolicy = OperandExtractPolicy(),
-    private val operatorExtractPolicy: OperatorExtractPolicy = OperatorExtractPolicy()
+    private val operandExtractPolicy: ExtractPolicy<List<Operand>>,
+    private val operatorExtractPolicy: ExtractPolicy<List<Operator>>
 ) {
     fun extract(splits: List<String>): Expression {
         val operands = operandExtractPolicy.extract(splits)
