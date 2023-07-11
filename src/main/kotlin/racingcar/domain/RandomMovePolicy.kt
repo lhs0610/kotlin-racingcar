@@ -5,7 +5,7 @@ import kotlin.random.Random
 class RandomMovePolicy : MovePolicy {
 
     override fun move(): Int {
-        val random = Random.nextInt(RANDOM_MIN, RANDOM_MAX + 1)
+        val random = Random.nextInt(RANDOM_MAX + 1)
         return if (random >= STEP_THRESHOLD) ONE_STEP else NO_STEP
     }
 
@@ -15,7 +15,6 @@ class RandomMovePolicy : MovePolicy {
         private const val ONE_STEP = 1
         private const val NO_STEP = 0
 
-        private const val RANDOM_MIN = 0
         private const val RANDOM_MAX = 9
     }
 }
