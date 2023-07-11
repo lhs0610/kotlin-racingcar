@@ -65,12 +65,12 @@ private fun multipleCalculate(formula: String): Int {
     val trimFormula = splitByWhiteSpace(formula)
     var answer = trimFormula[0].toInt()
     for (i in 1 until trimFormula.size step 2) {
-        val number2 = trimFormula[i + 1].toInt()
+        val nextNumber = trimFormula[i + 1].toInt()
         when (val operator = trimFormula[i]) {
-            "+" -> answer += number2
-            "-" -> answer -= number2
-            "*" -> answer *= number2
-            "/" -> answer /= number2
+            "+" -> answer += nextNumber
+            "-" -> answer -= nextNumber
+            "*" -> answer *= nextNumber
+            "/" -> answer /= nextNumber
             else -> throw IllegalArgumentException("$operator 은(는) 사칙연산 기호가 아닙니다.")
         }
     }
@@ -78,7 +78,7 @@ private fun multipleCalculate(formula: String): Int {
 }
 
 fun validationNullOrEmpty(formula: String?) {
-    if (formula.isNullOrBlank()) throw IllegalArgumentException()
+    require(formula != null && formula.isNotBlank())
 }
 
 private fun splitByWhiteSpace(formula: String) = formula.split(" ")
