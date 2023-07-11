@@ -1,7 +1,11 @@
 package racingcar.domain
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.startWith
+import racingcar.contants.ErrorType
 
 class RacingCarsTest : BehaviorSpec({
     Given("2칸씩 움직이는 3대의 자동차를 제공한다.") {
@@ -13,5 +17,27 @@ class RacingCarsTest : BehaviorSpec({
                 racingCars.movedDistanceList.forEach { it shouldBe 10 }
             }
         }
+    }
+
+    Given("자동차 대수 0을 제공한다.") {
+        val racingCarNum = 0
+        When("RacingCars를 만들 때") {
+            Then("예외가 발생한다.") {
+                val exception = shouldThrow<IllegalArgumentException> { RacingCars(racingCarNum) { 1 } }
+                exception.message should startWith(ErrorType.INVALID_NUMBER.message)
+            }
+        }
+
+    }
+
+    Given("자동차 대수 음수를 제공한다.") {
+        val racingCarNum = -1
+        When("RacingCar를 만들 때") {
+            Then("예외가 발생한다.") {
+                val exception = shouldThrow<IllegalArgumentException> { RacingCars(racingCarNum) { 1 } }
+                exception.message should startWith(ErrorType.INVALID_NUMBER.message)
+            }
+        }
+
     }
 })

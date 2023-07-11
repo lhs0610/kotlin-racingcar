@@ -1,5 +1,6 @@
 package racingcar.service
 
+import racingcar.contants.ErrorType
 import racingcar.domain.RacingCars
 import racingcar.domain.RandomMovePolicy
 import racingcar.model.RaceResultDto
@@ -12,16 +13,21 @@ class Race(
     private val racingCars: RacingCars
 
     init {
+        require(stepNum > 0)  {
+            ErrorType.INVALID_NUMBER.message
+        }
+
         racingCars = RacingCars(racingCarNum = racingCarNum, movePolicy = RandomMovePolicy())
     }
 
     fun start(): RaceResultDto {
-        val stepResultList = mutableListOf<StepResultDto>()
-        for (i in 0 until stepNum) {
-            racingCars.step()
-            val stepResult = StepResultDto(racingCars.movedDistanceList)
-            stepResultList.add(stepResult)
-        }
+        val stepResultList = (1..stepNum)
+            .asSequence()
+            .map {
+                racingCars.step()
+                StepResultDto(racingCars.movedDistanceList)
+            }.toList()
+
         return RaceResultDto(stepResultList)
     }
 }

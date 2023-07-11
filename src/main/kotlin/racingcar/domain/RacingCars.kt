@@ -1,14 +1,22 @@
 package racingcar.domain
 
+import racingcar.contants.ErrorType
+
 class RacingCars(
     racingCarNum: Int,
     movePolicy: MovePolicy
 ) {
-    private val racingCars = mutableListOf<RacingCar>()
+    private val racingCars: List<RacingCar>
 
     init {
-        for (i in 0 until racingCarNum)
-            racingCars.add(RacingCar(movePolicy))
+        require(racingCarNum > 0) {
+            ErrorType.INVALID_NUMBER.message
+        }
+
+        racingCars = (1..racingCarNum)
+            .asSequence()
+            .map { RacingCar(movePolicy) }
+            .toList()
     }
 
     fun step() {

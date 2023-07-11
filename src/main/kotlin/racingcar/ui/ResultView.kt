@@ -6,8 +6,7 @@ fun printRaceResult(raceResult: RaceResultDto) {
     println("실행 결과")
     raceResult.stepResults.forEach { stepResult ->
         stepResult.movedDistanceList.forEach { movedDistance ->
-            for(i in 0 until movedDistance)
-                print("-")
+            (1 .. movedDistance).forEach { _ -> print("-") }
             println()
         }
         println()
