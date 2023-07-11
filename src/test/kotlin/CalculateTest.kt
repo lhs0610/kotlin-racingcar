@@ -1,60 +1,59 @@
 import io.kotest.assertions.throwables.shouldThrow
-import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
-class CalculateTest : BehaviorSpec({
-    Given("Calculate") {
-
-        When("덧셈식이 주어졌을 때") {
+class CalculateTest : DescribeSpec({
+    describe("Calculate") {
+        context("덧셈식이 주어졌을 때") {
             val formula = "12 + 6"
-            Then("덧셈") {
+            it("덧셈") {
                 multipleCalculate(formula) shouldBe 18
             }
         }
 
-        When("뺄셈식이 주어졌을 때") {
+        context("뺄셈식이 주어졌을 때") {
             val formula = "17 - 7"
-            Then("뺄셈") {
+            it("뺄셈") {
                 multipleCalculate(formula) shouldBe 10
             }
         }
 
 
-        When("곱셈식이 주어졌을 때") {
+        context("곱셈식이 주어졌을 때") {
             val formula = "13 * 13"
-            Then("곱셈") {
+            it("곱셈") {
                 multipleCalculate(formula) shouldBe 169
             }
         }
 
-        When("나눗셈식이 주어졌을 때") {
+        context("나눗셈식이 주어졌을 때") {
             val formula = "15 / 3"
-            Then("나눗셈") {
+            it("나눗셈") {
                 multipleCalculate(formula) shouldBe 5
             }
         }
 
-        When("공백이 주어졌을 때") {
+        context("공백이 주어졌을 때") {
             val formula = ""
-            Then("에러발생") {
+            it("에러발생") {
                 shouldThrow<IllegalArgumentException> {
                     multipleCalculate(formula)
                 }
             }
         }
 
-        When("사칙연산 기호가 아닌 경우가 주어졌을 때") {
+        context("사칙연산 기호가 아닌 경우가 주어졌을 때") {
             val formula = "17 ] 12"
-            Then("에러발생") {
+            it("에러발생") {
                 shouldThrow<IllegalArgumentException> {
                     multipleCalculate(formula)
                 }
             }
         }
 
-        When("사칙연산이 주어졌을 때") {
+        context("사칙연산이 주어졌을 때") {
             val formula = "10 - 5 * 10 + 10 / 5"
-            Then("순차적으로 계산") {
+            it("순차적으로 계산") {
                 multipleCalculate(formula) shouldBe 12
             }
         }
