@@ -1,9 +1,11 @@
-package stringcalculator
+package stringcalculator.domain
 
 import stringcalculator.constants.ErrorType.INVALID_INPUT_BLANK
 import stringcalculator.enums.Operator
 
-class StringCalculator {
+class StringCalculator(
+    val splitPolicy: SplitPolicy = SpaceSplitPolicy()
+) {
     fun calculate(expression: String?): Double {
         require(!expression.isNullOrBlank()) {
             INVALID_INPUT_BLANK.message
