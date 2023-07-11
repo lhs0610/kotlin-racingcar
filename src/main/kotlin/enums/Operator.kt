@@ -1,6 +1,6 @@
 package enums
 
-enum class Operators(val operator: String) {
+enum class Operator(val operator: String) {
     PLUS("+"),
     MINUS("-"),
     MULTIPLY("*"),
@@ -8,7 +8,7 @@ enum class Operators(val operator: String) {
 
     companion object {
         fun getOperators(): List<String> {
-            return enumValues<Operators>().map {
+            return enumValues<Operator>().map {
                 it.operator
             }.toList()
         }

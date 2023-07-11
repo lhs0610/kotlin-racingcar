@@ -1,8 +1,7 @@
 package utilities
 
 import constant.StringConstant
-import enums.Operators
-import enums.Operators.*
+import enums.Operator
 
 class StringBasedCalculator(
     expression: String?,
@@ -17,7 +16,7 @@ class StringBasedCalculator(
 
         val split = expression.split(StringConstant.BLANK)
         val separate = split.groupBy {
-            Operators.getOperators().contains(it)
+            Operator.getOperators().contains(it)
         }
 
         operators = separate[true] ?: mutableListOf()
@@ -47,10 +46,10 @@ class StringBasedCalculator(
 
     private fun solveExpression(prefix: Int, postfix: Int, operator: String): Int {
         return when(operator) {
-            PLUS.operator -> prefix + postfix
-            MINUS.operator -> prefix - postfix
-            MULTIPLY.operator -> prefix * postfix
-            DIVIDE.operator -> prefix / postfix
+            Operator.PLUS.operator -> prefix + postfix
+            Operator.MINUS.operator -> prefix - postfix
+            Operator.MULTIPLY.operator -> prefix * postfix
+            Operator.DIVIDE.operator -> prefix / postfix
             else -> throw IllegalArgumentException("허용되지 않은 사칙연산 기호 \'${operator}\'가 포함되어 있습니다.")
         }
     }
