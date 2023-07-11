@@ -1,33 +1,26 @@
 package stringcalculator
 
 import stringcalculator.constants.ErrorType.INVALID_INPUT_BLANK
-import stringcalculator.constants.ErrorType.INVALID_INPUT_NULL
 import stringcalculator.enums.Operator
-import java.util.*
 
 class StringCalculator {
     fun calculate(expression: String?): Double {
-        val splits = expression?.split(DELIMITER)
-            ?: throw IllegalArgumentException(INVALID_INPUT_NULL.message)
+        require(!expression.isNullOrBlank()) {
+            INVALID_INPUT_BLANK.message
+        }
 
-        validateEmpty(expression)
+        val splits = expression.split(DELIMITER)
 
-        val queue: Queue<String> = LinkedList(splits)
-        var result = queue.poll().toDouble()
+        val queue = ArrayDeque(splits)
+        var result = queue.removeFirst().toDouble()
         while (queue.isNotEmpty()) {
-            val operator = Operator.of(queue.poll())
-            val operand = queue.poll().toDouble()
+            val operator = Operator.of(queue.removeFirst())
+            val operand = queue.removeFirst().toDouble()
 
             result = operator.calculate(result, operand)
         }
 
         return result
-    }
-
-    private fun validateEmpty(input: String) {
-        if (input.isBlank()) {
-            throw IllegalArgumentException(INVALID_INPUT_BLANK.message)
-        }
     }
 
     companion object {

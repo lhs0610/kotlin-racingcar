@@ -21,6 +21,7 @@
 - 뺄셈
 - 곱셈
 - 나눗셈
+- 0으로 나눌 경우 IllegalArgumentException throw
 - 입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw
 - 사칙연산 기호가 아닌 경우 IllegalArgumentException throw
 - 사칙 연산을 모두 포함하는 기능 구현

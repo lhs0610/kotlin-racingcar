@@ -127,18 +127,18 @@ class StringCalculatorTest : BehaviorSpec({
 
     Given("null 문자열을 제공한다.") {
         val input = null
-        When("문자열 계산기를 이용할 때") {
+        When("문자열 계산기를 이용하여 계산할 때") {
             val calculator = StringCalculator()
             Then("예외를 던진다.") {
                 val exception = shouldThrow<IllegalArgumentException> { calculator.calculate(input) }
-                exception.message should startWith(INVALID_INPUT_NULL.message)
+                exception.message should startWith(INVALID_INPUT_BLANK.message)
             }
         }
     }
 
     Given("빈 문자열을 제공한다.") {
         val input = ""
-        When("문자열 계산기를 이용할 때") {
+        When("문자열 계산기를 이용하여 계산할 때") {
             val calculator = StringCalculator()
             Then("예외를 던진다.") {
                 val exception = shouldThrow<IllegalArgumentException> { calculator.calculate(input) }
@@ -149,11 +149,23 @@ class StringCalculatorTest : BehaviorSpec({
 
     Given("잘못된 연산자가 있는 식을 제공한다.") {
         val input = "1 & 5"
-        When("문자열 계산기를 이용할 때") {
+        When("문자열 계산기를 이용하여 계산할 때") {
             val calculator = StringCalculator()
             Then("예외를 던진다.") {
                 val exception = shouldThrow<IllegalArgumentException> { calculator.calculate(input) }
                 exception.message should startWith(INVALID_OPERATOR.message)
+            }
+        }
+    }
+
+    Given("0으로 나누는 계산식을 제공한다.") {
+        val input = "1 + 3 * 5 / 0"
+
+        When("문자열 계산기를 이용하여 계산할 때") {
+            val calculator = StringCalculator()
+            Then("예외를 던진다.") {
+                val exception = shouldThrow<IllegalArgumentException> { calculator.calculate(input) }
+                exception.message should startWith(INVALID_DIVIDE_OPERAND.message)
             }
         }
     }
