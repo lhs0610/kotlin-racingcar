@@ -11,9 +11,9 @@ fun main() {
     val racingCarNum = inputRacingCarNum()
     val stepNum = inputStepNum()
 
-    val racingCars = RacingCars(racingCarNum = racingCarNum, movePolicy = RandomMovePolicy)
-    val race = Race(racingCars)
-    val raceResult = race.start(stepNum)
+    val racingCars = RacingCars(racingCarNum, RandomMovePolicy)
+    val race = Race()
+    val raceResult = race.start(racingCars, stepNum)
 
     printRaceResult(raceResult)
 }
