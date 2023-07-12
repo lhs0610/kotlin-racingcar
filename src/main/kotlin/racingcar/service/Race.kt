@@ -13,12 +13,10 @@ class Race(
             ErrorType.INVALID_NUMBER.message
         }
 
-        val stepResultList = (1..stepNum)
-            .asSequence()
-            .map {
-                racingCars.step()
-                StepResultDto(racingCars.movedDistanceList)
-            }.toList()
+        val stepResultList = List(stepNum) {
+            racingCars.step()
+            StepResultDto(racingCars.movedDistanceList)
+        }
 
         return RaceResultDto(stepResultList)
     }

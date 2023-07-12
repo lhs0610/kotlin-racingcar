@@ -3,11 +3,13 @@ package racingcar.domain
 class RacingCar(
     private val movePolicy: MovePolicy
 ) {
-    var movedDistance: Int = 0
-        private set
+    private val racingCarDistance: RacingCarDistance = RacingCarDistance()
 
     fun move() {
         val moved = movePolicy.move()
-        movedDistance += moved
+        racingCarDistance.increase(moved)
     }
+
+    val movedDistance: Int
+        get() = racingCarDistance.distance
 }
