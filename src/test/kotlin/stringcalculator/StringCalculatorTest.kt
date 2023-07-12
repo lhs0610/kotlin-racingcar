@@ -5,7 +5,10 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.startWith
-import stringcalculator.constants.ErrorType.*
+import stringcalculator.constants.ErrorType.INVALID_DIVIDE_OPERAND
+import stringcalculator.constants.ErrorType.INVALID_INPUT_BLANK
+import stringcalculator.constants.ErrorType.INVALID_OPERATOR
+import stringcalculator.domain.calculator.StringCalculator
 
 class StringCalculatorTest : BehaviorSpec({
     Given("두 개의 숫자를 더하는 식을 문자열로 제공한다.") {
