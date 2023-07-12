@@ -19,25 +19,14 @@ class RacingCarsTest : BehaviorSpec({
         }
     }
 
-    Given("자동차 대수 0을 제공한다.") {
-        val racingCarNum = 0
-        When("RacingCars를 만들 때") {
-            Then("예외가 발생한다.") {
-                val exception = shouldThrow<IllegalArgumentException> { RacingCars(racingCarNum) { 1 } }
-                exception.message should startWith(ErrorType.INVALID_NUMBER.message)
+    Given("유효하지 않은 자동차 대수를 제공한다.") {
+        listOf(-1, 0).forEach { racingCarNum ->
+            When("RacingCars를 만들 때") {
+                Then("예외가 발생한다.") {
+                    val exception = shouldThrow<IllegalArgumentException> { RacingCars(racingCarNum) { 1 } }
+                    exception.message should startWith(ErrorType.INVALID_NUMBER.message)
+                }
             }
         }
-
-    }
-
-    Given("자동차 대수 음수를 제공한다.") {
-        val racingCarNum = -1
-        When("RacingCar를 만들 때") {
-            Then("예외가 발생한다.") {
-                val exception = shouldThrow<IllegalArgumentException> { RacingCars(racingCarNum) { 1 } }
-                exception.message should startWith(ErrorType.INVALID_NUMBER.message)
-            }
-        }
-
     }
 })
