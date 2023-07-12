@@ -9,7 +9,7 @@ import racingcar.contants.ErrorType
 
 class RacingCarsTest : BehaviorSpec({
     Given("2칸씩 움직이는 3대의 자동차를 제공한다.") {
-        val racingCars = RacingCars(3) { 2 }
+        val racingCars = RacingCars(carNames = listOf("A", "B", "C")) { 2 }
         When("5번 시도를 할 때") {
             for (i in 0 until 5)
                 racingCars.step()
@@ -19,13 +19,12 @@ class RacingCarsTest : BehaviorSpec({
         }
     }
 
-    Given("유효하지 않은 자동차 대수를 제공한다.") {
-        listOf(-1, 0).forEach { racingCarNum ->
-            When("RacingCars를 만들 때") {
-                Then("예외가 발생한다.") {
-                    val exception = shouldThrow<IllegalArgumentException> { RacingCars(racingCarNum) { 1 } }
-                    exception.message should startWith(ErrorType.INVALID_NUMBER.message)
-                }
+    Given("빈 자동차 이름 목록을 제공한다.") {
+        val carNames = listOf<String>()
+        When("RacingCars를 만들 때") {
+            Then("예외가 발생한다.") {
+                val exception = shouldThrow<IllegalArgumentException> { RacingCars(carNames) { 1 } }
+                exception.message should startWith(ErrorType.INVALID_CAR_NUMBER.message)
             }
         }
     }

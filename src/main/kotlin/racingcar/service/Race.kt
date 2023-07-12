@@ -8,7 +8,7 @@ import racingcar.model.StepResultDto
 class Race {
     fun start(racingCars: RacingCars, stepNum: Int): RaceResultDto {
         require(stepNum > 0) {
-            ErrorType.INVALID_NUMBER.message
+            ErrorType.INVALID_STEP_NUMBER.message
         }
 
         val stepResultList = List(stepNum) {

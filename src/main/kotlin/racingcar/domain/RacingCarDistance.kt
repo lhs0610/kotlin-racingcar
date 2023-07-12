@@ -5,18 +5,18 @@ import java.util.concurrent.atomic.AtomicInteger
 
 @JvmInline
 value class RacingCarDistance(
-    private val distanceValue: AtomicInteger = AtomicInteger(0)
+    private val _distance: AtomicInteger = AtomicInteger(0)
 ) {
-    val distance: Int
-        get() = distanceValue.get()
-
     init {
-        require(distanceValue.get() >= 0) {
+        require(_distance.get() >= 0) {
             ErrorType.INVALID_MOVED_DISTANCE.message
         }
     }
 
+    val distance: Int
+        get() = _distance.get()
+
     fun increase(moveDistance: Int) {
-        distanceValue.addAndGet(moveDistance)
+        _distance.addAndGet(moveDistance)
     }
 }

@@ -3,18 +3,18 @@ package racingcar.domain
 import racingcar.contants.ErrorType
 
 class RacingCars(
-    racingCarNum: Int,
+    carNames: List<String>,
     movePolicy: MovePolicy
 ) {
     private val racingCars: List<RacingCar>
 
     init {
-        require(racingCarNum > 0) {
-            ErrorType.INVALID_NUMBER.message
+        require(carNames.isNotEmpty()) {
+            ErrorType.INVALID_CAR_NUMBER.message
         }
 
-        racingCars = List(racingCarNum) {
-            RacingCar(movePolicy)
+        racingCars = carNames.map {
+            name -> RacingCar(name, movePolicy)
         }
     }
 
