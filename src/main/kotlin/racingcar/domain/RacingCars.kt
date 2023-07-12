@@ -3,26 +3,31 @@ package racingcar.domain
 import racingcar.contants.ErrorType
 
 class RacingCars(
-    racingCarNum: Int,
+    carNames: List<String>,
     movePolicy: MovePolicy
 ) {
-    private val racingCars: List<RacingCar>
+    private val _cars: List<RacingCar>
 
     init {
-        require(racingCarNum > 0) {
-            ErrorType.INVALID_NUMBER.message
+        require(carNames.isNotEmpty()) {
+            ErrorType.INVALID_CAR_NUMBER.message
         }
 
-        racingCars = List(racingCarNum) {
-            RacingCar(movePolicy)
+        _cars = carNames.map {
+            name -> RacingCar(name, movePolicy)
         }
     }
 
     fun step() {
-        racingCars.forEach { it.move() }
+        _cars.forEach { it.move() }
     }
 
-    val movedDistanceList: List<Int>
-        get() = racingCars.map { it.movedDistance }
-            .toList()
+    val cars: List<RacingCar>
+        get() = ArrayList(_cars)
+
+    val winners: List<RacingCar>
+        get() {
+            val max = _cars.max()
+            return cars.filter { car -> car.compareTo(max) == 0 }
+        }
 }

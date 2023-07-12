@@ -1,15 +1,26 @@
 package racingcar.domain
 
 class RacingCar(
-    private val movePolicy: MovePolicy
-) {
-    private val racingCarDistance: RacingCarDistance = RacingCarDistance()
+    name: String,
+    private val movePolicy: MovePolicy,
+) : Comparable<RacingCar> {
+    private val _distance: RacingCarDistance = RacingCarDistance()
+    private val _name: RacingCarName
+
+    init {
+        this._name = RacingCarName(name)
+    }
+
+    val name: String
+        get() = _name.name
+
+    val movedDistance: Int
+        get() = _distance.distance
 
     fun move() {
         val moved = movePolicy.move()
-        racingCarDistance.increase(moved)
+        _distance.increase(moved)
     }
 
-    val movedDistance: Int
-        get() = racingCarDistance.distance
+    override fun compareTo(other: RacingCar): Int = movedDistance - other.movedDistance
 }

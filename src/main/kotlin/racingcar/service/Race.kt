@@ -3,21 +3,24 @@ package racingcar.service
 import racingcar.contants.ErrorType
 import racingcar.domain.RacingCars
 import racingcar.model.RaceResultDto
+import racingcar.model.RacingCarDto
 import racingcar.model.StepResultDto
 
-class Race(
-    private val racingCars: RacingCars
-) {
-    fun start(stepNum: Int): RaceResultDto {
+class Race {
+    fun start(racingCars: RacingCars, stepNum: Int): RaceResultDto {
         require(stepNum > 0) {
-            ErrorType.INVALID_NUMBER.message
+            ErrorType.INVALID_STEP_NUMBER.message
         }
 
         val stepResultList = List(stepNum) {
             racingCars.step()
-            StepResultDto(racingCars.movedDistanceList)
+            val cars = racingCars.cars.map {
+                car -> RacingCarDto(car.name, car.movedDistance)
+            }
+            StepResultDto(cars)
         }
 
-        return RaceResultDto(stepResultList)
+        val winners = racingCars.winners.map { it.name }
+        return RaceResultDto(stepResultList, winners)
     }
 }

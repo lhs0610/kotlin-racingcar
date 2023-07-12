@@ -1,15 +1,12 @@
 package racingcar.ui
 
-fun inputRacingCarNum(): Int {
-    println("자동차 대수는 몇 대인가요?")
+fun inputRacingCarNames(): List<String> {
+    println("경주할 자동차 이름을 입력하세요(이름은 쉼표(${NAME_DELIMITER})를 기준으로 구분).")
 
     val input: String = readlnOrNull()
-        ?: throw IllegalArgumentException("자동차 대수를 입력해주세요.")
+        ?: throw IllegalArgumentException("자동차 이름을 입력해주세요.")
 
-    val toIntOrNull = input.toIntOrNull()
-    requireNotNull(toIntOrNull) { "자동차 대수는 숫자를 입력해주세요." }
-    require(toIntOrNull > 0) { "자동차 대수는 양의 정수를 입력해주세요." }
-    return toIntOrNull
+    return input.split(NAME_DELIMITER)
 }
 
 fun inputStepNum(): Int {
@@ -24,3 +21,5 @@ fun inputStepNum(): Int {
 
     return toIntOrNull
 }
+
+const val NAME_DELIMITER = ","

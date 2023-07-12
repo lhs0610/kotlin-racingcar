@@ -1,20 +1,22 @@
 package racingcar.domain
 
 import racingcar.contants.ErrorType
+import java.util.concurrent.atomic.AtomicInteger
 
-class RacingCarDistance(
-    private var distanceValue: Int = 0
+@JvmInline
+value class RacingCarDistance(
+    private val _distance: AtomicInteger = AtomicInteger(0)
 ) {
-    val distance: Int
-        get() = distanceValue
-
     init {
-        require(distanceValue >= 0) {
+        require(_distance.get() >= 0) {
             ErrorType.INVALID_MOVED_DISTANCE.message
         }
     }
 
-    fun increase(moveDistance: Int = 0) {
-        distanceValue += moveDistance
+    val distance: Int
+        get() = _distance.get()
+
+    fun increase(moveDistance: Int) {
+        _distance.addAndGet(moveDistance)
     }
 }
