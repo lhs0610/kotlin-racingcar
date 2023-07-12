@@ -20,6 +20,7 @@ class Race {
             StepResultDto(cars)
         }
 
-        return RaceResultDto(stepResultList)
+        val winners = racingCars.winners.map { it.name }
+        return RaceResultDto(stepResultList, winners)
     }
 }
