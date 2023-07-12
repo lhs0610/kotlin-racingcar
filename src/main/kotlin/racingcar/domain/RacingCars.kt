@@ -13,10 +13,9 @@ class RacingCars(
             ErrorType.INVALID_NUMBER.message
         }
 
-        racingCars = (1..racingCarNum)
-            .asSequence()
-            .map { RacingCar(movePolicy) }
-            .toList()
+        racingCars = List(racingCarNum) {
+            RacingCar(movePolicy)
+        }
     }
 
     fun step() {
