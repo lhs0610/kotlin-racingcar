@@ -1,5 +1,5 @@
 package racingcar.model
 
 data class StepResultDto(
-    val movedDistanceList: List<Int>
+    val racingCarList: List<RacingCarDto>
 )

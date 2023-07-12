@@ -7,8 +7,10 @@ fun printRaceResult(raceResult: RaceResultDto) {
 
     val result = raceResult.stepResults.joinToString(separator = STEP_SEPARATOR) {
         stepResult ->
-        stepResult.movedDistanceList
-            .joinToString(separator = RACING_CAR_SEPARATOR) { movedDistance -> MOVED_DISTANCE.repeat(movedDistance) }
+        stepResult.racingCarList
+            .joinToString(separator = RACING_CAR_SEPARATOR,) {
+                racingCar -> "${racingCar.name} : ${MOVED_DISTANCE.repeat(racingCar.movedDistance)}"
+            }
     }
 
     println(result)

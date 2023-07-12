@@ -14,7 +14,7 @@ class RacingCarsTest : BehaviorSpec({
             for (i in 0 until 5)
                 racingCars.step()
             Then("모든 자동차가 거리 10만큼 이동해야 한다.") {
-                racingCars.movedDistanceList.forEach { it shouldBe 10 }
+                racingCars.cars.forEach { car -> car.movedDistance shouldBe 10 }
             }
         }
     }

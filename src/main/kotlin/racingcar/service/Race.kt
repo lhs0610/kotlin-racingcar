@@ -3,6 +3,7 @@ package racingcar.service
 import racingcar.contants.ErrorType
 import racingcar.domain.RacingCars
 import racingcar.model.RaceResultDto
+import racingcar.model.RacingCarDto
 import racingcar.model.StepResultDto
 
 class Race {
@@ -13,7 +14,10 @@ class Race {
 
         val stepResultList = List(stepNum) {
             racingCars.step()
-            StepResultDto(racingCars.movedDistanceList)
+            val cars = racingCars.cars.map {
+                car -> RacingCarDto(car.name, car.movedDistance)
+            }
+            StepResultDto(cars)
         }
 
         return RaceResultDto(stepResultList)
