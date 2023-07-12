@@ -1,7 +1,7 @@
-import entity.Person
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
+import person.Person
 
 private const val NAME: String = "정종욱"
 private const val NICK_NAME: String = "종구"

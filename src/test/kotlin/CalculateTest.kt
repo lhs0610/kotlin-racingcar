@@ -1,3 +1,4 @@
+import calculator.utils.multipleCalculate
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
@@ -17,7 +18,6 @@ class CalculateTest : DescribeSpec({
                 multipleCalculate(formula) shouldBe 10
             }
         }
-
 
         context("곱셈식이 주어졌을 때") {
             val formula = "13 * 13"
@@ -51,6 +51,15 @@ class CalculateTest : DescribeSpec({
             }
         }
 
+        context("곱셈 혹은 나눗셈에서 분모가 0인 경우가 주어졌을 때") {
+            val formula = "17 * 12 / 0"
+            it("에러발생") {
+                shouldThrow<IllegalArgumentException> {
+                    multipleCalculate(formula)
+                }
+            }
+        }
+
         context("사칙연산이 주어졌을 때") {
             val formula = "10 - 5 * 10 + 10 / 5"
             it("순차적으로 계산") {
@@ -59,26 +68,3 @@ class CalculateTest : DescribeSpec({
         }
     }
 })
-
-private fun multipleCalculate(formula: String): Int {
-    validationNullOrEmpty(formula)
-    val trimFormula = splitByWhiteSpace(formula)
-    var answer = trimFormula[0].toInt()
-    for (i in 1 until trimFormula.size step 2) {
-        val nextNumber = trimFormula[i + 1].toInt()
-        when (val operator = trimFormula[i]) {
-            "+" -> answer += nextNumber
-            "-" -> answer -= nextNumber
-            "*" -> answer *= nextNumber
-            "/" -> answer /= nextNumber
-            else -> throw IllegalArgumentException("$operator 은(는) 사칙연산 기호가 아닙니다.")
-        }
-    }
-    return answer
-}
-
-fun validationNullOrEmpty(formula: String?) {
-    require(formula != null && formula.isNotBlank())
-}
-
-private fun splitByWhiteSpace(formula: String) = formula.split(" ")
