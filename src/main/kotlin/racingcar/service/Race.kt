@@ -9,7 +9,7 @@ class Race(
     private val racingCars: RacingCars
 ) {
     fun start(stepNum: Int): RaceResultDto {
-        require(stepNum > 0)  {
+        require(stepNum > 0) {
             ErrorType.INVALID_NUMBER.message
         }
 

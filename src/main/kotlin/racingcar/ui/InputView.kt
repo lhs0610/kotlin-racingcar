@@ -24,4 +24,3 @@ fun inputStepNum(): Int {
 
     return toIntOrNull
 }
-
