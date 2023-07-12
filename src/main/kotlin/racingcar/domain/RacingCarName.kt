@@ -18,5 +18,4 @@ value class RacingCarName(
     companion object {
         private const val MAX_NAME_LENGTH = 5
     }
-
 }
