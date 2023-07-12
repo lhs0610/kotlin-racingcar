@@ -19,11 +19,16 @@ class MyKotlinTest : ExpectSpec({
 
         expect("data class test") {
             val person = Person(name = "심의진", age = 22, nickname = "Jinni01")
-            val other = Person(name = "신의진", age = 22, nickname = "Jinni001")
+
+            //use copy function from data class
+            val other = person.copy(name = "신의진", nickname = "Jinni001")
 
             val shouldBeTypeOf = person.shouldBeTypeOf<Person>()
             //same reference
             shouldBeTypeOf.nickname = "Jinni02"
+
+            println(person)
+            println(other)
 
             person.age shouldBe other.age
         }
