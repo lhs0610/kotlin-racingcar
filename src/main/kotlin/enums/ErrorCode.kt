@@ -1,9 +1,10 @@
 package enums
 
 enum class ErrorCode(var code: String) {
-    //input errors
     ERROR_EXPRESSION_NOT_NULL_OR_BLANK("E001"),
     ERROR_NOT_ALLOWED_SYMBOL("E002"),
-    //logical errors
+    ERROR_IS_NOT_NUMERIC("E003"),
+    ERROR_OPERATOR_OPERAND_COUNT_NOT_MATCH("E004"),
+    ERROR_CANNOT_USE_OPERATOR_AS_DELIMITER("E005"),
     ERROR_DIVIDER_CANNOT_ZERO("E101")
 }

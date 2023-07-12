@@ -1,56 +1,43 @@
 package utilities
 
-import constant.StringConstant
+import enums.ErrorCode
 import enums.Operator
 
-class StringBasedCalculator(
-    expression: String?,
-    var numbers: List<String> = mutableListOf(),
-    var operators: List<String> = mutableListOf()
-) {
+object StringBasedCalculator {
 
-    init {
-        if (expression.isNullOrBlank()) {
-            throw IllegalArgumentException("입력값은 null 이거나 공백 문자일 수 없습니다.")
-        }
+    private const val FIRST_OPERAND_INDEX = 0;
+    private const val OPERATOR_OFFSET = 1;
 
-        val split = expression.split(StringConstant.BLANK)
-        val separate = split.groupBy {
-            Operator.getOperators().contains(it)
-        }
+    fun calculate(delimiter: String, expression: String?): Int {
 
-        operators = separate[true] ?: mutableListOf()
-        numbers = separate[false] ?: mutableListOf()
-    }
+        require(!Operator.getMapping().containsKey(delimiter)) { "${ErrorCode.ERROR_CANNOT_USE_OPERATOR_AS_DELIMITER.code}: \'${delimiter}\'는 구분자로 사용할 수 없습니다." }
+        require(!expression.isNullOrBlank()) { "${ErrorCode.ERROR_EXPRESSION_NOT_NULL_OR_BLANK.code}: 입력값은 null 이거나 공백 문자일 수 없습니다." }
 
-    fun calculate(): Int {
+        val split = expression.split(delimiter);
+        require(split.sizeIsOdd()) { "${ErrorCode.ERROR_OPERATOR_OPERAND_COUNT_NOT_MATCH.code}: 입력된 연산자와 피연산자의 수가 잘못되었습니다. 합은 홀수여야 합니다. 입력값:\'${expression}\'" }
 
-        val convertedNumbers = numbers.map {
-            val origin = it
-            it.toIntOrNull() ?: throw java.lang.IllegalArgumentException("잘못된 수식 \'${origin}\'이 포함되어 있습니다.")
-        }
+        var result = convertStringToIntCheckNumeric(split[FIRST_OPERAND_INDEX]);
 
-        val numbersIterator = convertedNumbers.iterator()
-        val operatorsIterator = operators.iterator()
+        for (index in OPERATOR_OFFSET until split.size step 2) {
+            val operator = getExistOperator(split[index])
+            val operand = convertStringToIntCheckNumeric(split[index + OPERATOR_OFFSET])
 
-        var result = numbersIterator.next();
-
-        while(numbersIterator.hasNext() && operatorsIterator.hasNext()) {
-            val number = numbersIterator.next()
-            val operator = operatorsIterator.next()
-            result = solveExpression(result, number, operator)
+            result = Operator.calculate(operator, result, operand)
         }
 
         return result
     }
-
-    private fun solveExpression(prefix: Int, postfix: Int, operator: String): Int {
-        return when(operator) {
-            Operator.PLUS.operator -> prefix + postfix
-            Operator.MINUS.operator -> prefix - postfix
-            Operator.MULTIPLY.operator -> prefix * postfix
-            Operator.DIVIDE.operator -> prefix / postfix
-            else -> throw IllegalArgumentException("허용되지 않은 사칙연산 기호 \'${operator}\'가 포함되어 있습니다.")
-        }
+    
+    private fun getExistOperator(operator: String): String {
+        require(Operator.getMapping().containsKey(operator)) { "${ErrorCode.ERROR_NOT_ALLOWED_SYMBOL.code}: 잘못된 수식 \'${operator}\'이 포함되어 있습니다." }
+        return operator;
     }
+
+    private fun convertStringToIntCheckNumeric(origin: String): Int {
+        return origin.toIntOrNull() ?: throw java.lang.IllegalArgumentException("${ErrorCode.ERROR_IS_NOT_NUMERIC.code}: \'${origin}\'은 숫자가 아닙니다.")
+    }
+}
+
+fun List<String>.sizeIsOdd(): Boolean {
+    return this.size % 2 == 1
 }
