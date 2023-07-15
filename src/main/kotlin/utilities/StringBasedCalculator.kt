@@ -33,16 +33,6 @@ object StringBasedCalculator {
         val firstOperand = operands.removeFirst()
         val zip = operators.zip(operands)
 
-
-        /*var result = convertStringToIntCheckNumeric(split[FIRST_OPERAND_INDEX]);
-
-        for (index in OPERATOR_OFFSET until split.size step 2) {
-            val operator = getExistOperator(split[index])
-            val operand = convertStringToIntCheckNumeric(split[index + OPERATOR_OFFSET])
-
-            result = Operator.calculate(operator, result, operand)
-        }*/
-
         return zip.fold(firstOperand) { result, pair -> Operator.calculate(pair.first, result, pair.second) }
     }
     
