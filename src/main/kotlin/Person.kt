@@ -1,5 +1,5 @@
 data class Person(
-    val name: String?,
+    val name: String,
     val age: Int,
-    var nickname: String?
+    private var nickname: String?
 )
