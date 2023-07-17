@@ -1,4 +1,4 @@
-package domain
+package domain.deprecated
 
 import constant.StringConstant
 import enums.ErrorCode

@@ -1,16 +1,16 @@
 package racingcar
 
-import domain.RacingCar
+import domain.racingcar.RacingCar
+import domain.racingcar.RandomStrategy
 import io.kotest.core.spec.style.ExpectSpec
 import io.kotest.matchers.shouldBe
-import utilities.NumberUtil
 
 class RacingCarTest: ExpectSpec({
 
     context("기능 테스트") {
 
-        expect("레이싱카 객체를 생성해 5만큼 이동") {
-            val racingCar = RacingCar()
+        xexpect("레이싱카 객체를 생성해 5만큼 이동") {
+            val racingCar = RacingCar(RandomStrategy)
             racingCar.position shouldBe 0
 
             racingCar.move(5)

@@ -1,13 +1,13 @@
 package kotlintutorial
 
-import Person
+import domain.Person.Person
 import io.kotest.core.spec.style.ExpectSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
 
 class MyKotlinTest : ExpectSpec({
 
-    context("domain test: Person") {
+    context("domain test: domain.Person.Person") {
         expect("named argument test") {
             val person = Person(name = "심의진", age = 22, nickname = "Jinni01")
 

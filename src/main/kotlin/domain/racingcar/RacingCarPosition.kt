@@ -1,4 +1,4 @@
-package domain
+package domain.racingcar
 class RacingCarPosition(
     private var _position: Int = 0
 ) {

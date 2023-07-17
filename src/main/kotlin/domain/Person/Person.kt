@@ -1,3 +1,5 @@
+package domain.Person
+
 data class Person(val name: String, val age: Int, var nickname: String?) {
 
     companion object {
