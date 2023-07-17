@@ -1,8 +1,12 @@
 package domain
 
-class RacingCar(var position: Int = 0) {
+class RacingCar() {
+    private val _position = RacingCarPosition()
+
+    val position: Int
+        get() = _position.position
 
     fun move(distance: Int) {
-        position += distance;
+        _position.move(distance)
     }
 }
