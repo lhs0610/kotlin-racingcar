@@ -4,7 +4,7 @@ class InputUtil {
 
     companion object {
 
-        fun receiveInput(): Int {
+        fun receiveIntInput(): Int {
             val origin: String = readln()
             return NumberUtil.convertStringToIntCheckNumeric(origin)
         }
