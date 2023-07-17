@@ -1,7 +1,7 @@
 package racingcar
 
 import domain.racingcar.RacingCar
-import domain.racingcar.RandomStrategy
+import domain.racingcar.strategy.RandomStrategy
 import io.kotest.core.spec.style.ExpectSpec
 import io.kotest.matchers.shouldBe
 

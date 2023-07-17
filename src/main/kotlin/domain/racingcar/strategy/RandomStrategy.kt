@@ -1,4 +1,4 @@
-package domain.racingcar
+package domain.racingcar.strategy
 
 object RandomStrategy: RaceStrategy {
 

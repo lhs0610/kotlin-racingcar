@@ -1,5 +1,8 @@
 package domain.racingcar
 
+import domain.racingcar.strategy.RaceStrategy
+import domain.racingcar.strategy.RandomStrategy
+
 class RacingCar(
     private val strategy: RaceStrategy = RandomStrategy
 ) {
