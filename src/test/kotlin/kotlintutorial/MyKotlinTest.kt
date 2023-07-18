@@ -1,6 +1,6 @@
 package kotlintutorial
 
-import domain.Person.Person
+import tutorial.domain.person.Person
 import io.kotest.core.spec.style.ExpectSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
