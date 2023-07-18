@@ -7,6 +7,7 @@ object RandomStrategy: RaceStrategy {
 
     private const val MIN_MOVE = 4
     private const val STAY = 0
+
     override fun move(): Int {
         val randInt = (MIN_RANDOM_VALUE..MAX_RANDOM_VALUE).random()
         if (randInt < MIN_MOVE) {
