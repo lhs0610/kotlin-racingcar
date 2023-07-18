@@ -4,6 +4,7 @@ import io.kotest.core.spec.style.ExpectSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
+import racingcar.component.Race
 import racingcar.component.RacingCarFactory
 import racingcar.domain.RacingCar
 import racingcar.domain.RacingCarContainer
@@ -64,6 +65,16 @@ class RacingCarTest: ExpectSpec({
 
             stepHistory.shouldHaveSize(5)
             stepHistory.forAll { it.shouldBe(1) }
+        }
+    }
+
+    context("Race test") {
+        expect("start test") {
+            val race = Race(7, 2) { true }
+            val raceHistory = race.start()
+
+            raceHistory.stepHistories.shouldHaveSize(2)
+            raceHistory.stepHistories.last().positions.forAll { it.shouldBe(2) }
         }
     }
 
