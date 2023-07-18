@@ -1,29 +1,24 @@
 package racingcar
 
 import io.kotest.core.spec.style.ExpectSpec
+import io.kotest.matchers.shouldBe
+import racingcar.domain.RacingCarPosition
 
 class RacingCarTest: ExpectSpec({
 
-    context("context name") {
+    context("RacingCarPosition test") {
+        expect("construct test") {
+            val position = RacingCarPosition(0)
 
-        expect("expect name") {
-
+            position.distance shouldBe 0
         }
 
-        expect("expect name") {
+        expect("plus test") {
+            val position = RacingCarPosition(0)
+            val moved = position + 3
 
-        }
-
-        expect("expect name") {
-
-        }
-
-        expect("expect name") {
-
-        }
-
-        expect("expect name") {
-
+            moved.distance shouldBe 3
         }
     }
+
 })

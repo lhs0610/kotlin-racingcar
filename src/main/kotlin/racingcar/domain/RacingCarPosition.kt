@@ -1,12 +1,9 @@
 package racingcar.domain
 
-class RacingCarPosition(
-    private var _position: Int = 0
-) {
-    val position: Int
-        get() = _position
+@JvmInline
+value class RacingCarPosition(val distance: Int) {
 
-    fun move(distance: Int) {
-        _position += distance
+    operator fun plus(value: Int): RacingCarPosition {
+        return RacingCarPosition(distance + value)
     }
 }
