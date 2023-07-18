@@ -32,14 +32,14 @@ class RacingCarTest: ExpectSpec({
 
     context("RacingCar test") {
         expect("construct test") {
-            val racingCar = RacingCar({ true }, RacingCarPosition(0))
+            val racingCar = RacingCar(RacingCarPosition(0))
 
             racingCar.getDistance() shouldBe 0
         }
 
         expect("move test") {
-            val racingCar = RacingCar({ true }, RacingCarPosition(0))
-            racingCar.attemptMove()
+            val racingCar = RacingCar(RacingCarPosition(0))
+            racingCar.attemptMove { true }
 
             racingCar.getDistance() shouldBe 1
         }

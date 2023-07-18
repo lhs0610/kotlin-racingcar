@@ -3,7 +3,6 @@ package racingcar.domain
 import racingcar.strategy.RaceStrategy
 
 class RacingCar(
-    private val raceStrategy: RaceStrategy,
     private var position: RacingCarPosition
 ) {
 
@@ -11,7 +10,7 @@ class RacingCar(
         return position.distance
     }
 
-    fun attemptMove() {
+    fun attemptMove(raceStrategy: RaceStrategy) {
         if (!raceStrategy.allowMove()) {
             return
         }
