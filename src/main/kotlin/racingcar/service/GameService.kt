@@ -1,7 +1,7 @@
 package racingcar.service
 
 import racingcar.component.Race
-import racingcar.dto.RaceHistoryDto
+import racingcar.model.dto.RaceHistoryDto
 import racingcar.strategy.RaceStrategy
 
 object GameService {

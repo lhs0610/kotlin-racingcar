@@ -1,5 +1,7 @@
 package racingcar.application
 
-fun main() {
+import racingcar.controller.GameController
 
+fun main() {
+    GameController.startRacingGame()
 }

@@ -1,8 +1,7 @@
 package racingcar.domain
 
 import racingcar.component.RacingCarFactory
-import racingcar.constant.ErrorMessage
-import racingcar.dto.StepHistoryDto
+import racingcar.constant.Message
 import racingcar.strategy.RaceStrategy
 
 class RacingCarContainer(
@@ -12,7 +11,6 @@ class RacingCarContainer(
     private val racingCars: List<RacingCar>
 
     init {
-        require(racingCarQuantity > 0) { ErrorMessage.INVALID_RACINGCAR_QUANITY.message }
         racingCars = RacingCarFactory.generateRacingCars(racingCarQuantity, position)
     }
 
