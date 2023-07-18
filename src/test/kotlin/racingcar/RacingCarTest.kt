@@ -1,9 +1,12 @@
 package racingcar
 
 import io.kotest.core.spec.style.ExpectSpec
+import io.kotest.inspectors.forAll
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import racingcar.component.RacingCarFactory
 import racingcar.domain.RacingCar
+import racingcar.domain.RacingCarContainer
 import racingcar.domain.RacingCarPosition
 
 class RacingCarTest: ExpectSpec({
@@ -51,6 +54,16 @@ class RacingCarTest: ExpectSpec({
             for (racingCar in racingCars) {
                 racingCar.getDistance() shouldBe 0
             }
+        }
+    }
+
+    context("RacingCarContainer test") {
+        expect("step progress test") {
+            val racingCarContainer = RacingCarContainer(5, RacingCarPosition(0))
+            val stepHistory = racingCarContainer.stepProgress { true }
+
+            stepHistory.shouldHaveSize(5)
+            stepHistory.forAll { it.shouldBe(1) }
         }
     }
 
