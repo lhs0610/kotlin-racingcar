@@ -1,21 +1,24 @@
 package racingcar.domain
 
 import racingcar.strategy.RaceStrategy
-import racingcar.strategy.RandomStrategy
 
 class RacingCar(
-    private val strategy: RaceStrategy = RandomStrategy
+    private val raceStrategy: RaceStrategy,
+    private var position: RacingCarPosition
 ) {
-    private val _position = RacingCarPosition()
 
-    val position: Int
-        get() = _position.position
-
-    fun attemptMove() {
-        move(strategy.move())
+    fun getDistance():Int {
+        return position.distance
     }
 
-    fun move(distance: Int) {
-        _position.move(distance)
+    fun attemptMove() {
+        if (!raceStrategy.allowMove()) {
+            return
+        }
+        move()
+    }
+
+    private fun move() {
+        position += 1
     }
 }
