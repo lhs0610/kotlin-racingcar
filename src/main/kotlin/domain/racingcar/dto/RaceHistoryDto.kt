@@ -1,4 +1,3 @@
 package domain.racingcar.dto
 
-class RaceHistoryDto(val stepHistories: List<StepHistoryDto>) {
-}
+data class RaceHistoryDto(val stepHistories: List<StepHistoryDto>)
