@@ -19,6 +19,13 @@ class RacingCarTest: ExpectSpec({
 
             moved.distance shouldBe 3
         }
+
+        expect("minus test") {
+            val position = RacingCarPosition(5)
+            val moved = position - 7
+
+            moved.distance shouldBe 0
+        }
     }
 
 })
