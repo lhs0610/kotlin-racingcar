@@ -2,9 +2,9 @@ package racingcar
 
 import io.kotest.core.spec.style.ExpectSpec
 import io.kotest.matchers.shouldBe
+import racingcar.component.RacingCarFactory
 import racingcar.domain.RacingCar
 import racingcar.domain.RacingCarPosition
-import racingcar.strategy.RandomStrategy
 
 class RacingCarTest: ExpectSpec({
 
@@ -42,6 +42,15 @@ class RacingCarTest: ExpectSpec({
             racingCar.attemptMove { true }
 
             racingCar.getDistance() shouldBe 1
+        }
+    }
+
+    context("RacingCarFactory test") {
+        expect("generate racingcar list test") {
+            val racingCars = RacingCarFactory.generateRacingCars(3, RacingCarPosition(0))
+            for (racingCar in racingCars) {
+                racingCar.getDistance() shouldBe 0
+            }
         }
     }
 
