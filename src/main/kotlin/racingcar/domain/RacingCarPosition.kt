@@ -9,7 +9,7 @@ value class RacingCarPosition(val distance: Int) {
     }
 
     operator fun minus(value: Int): RacingCarPosition {
-        val result = getResultOrZero(distance + value)
+        val result = getResultOrZero(distance - value)
         return RacingCarPosition(result)
     }
 

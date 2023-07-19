@@ -2,12 +2,10 @@ package racingcar.component
 
 import racingcar.domain.RacingCar
 import racingcar.domain.RacingCarPosition
+import racingcar.model.vo.RacingCarSettingVO
 
 object RacingCarFactory {
-    fun generateRacingCars(quantity: Int, position: RacingCarPosition): List<RacingCar> {
-
-        val racingCars = mutableListOf<RacingCar>()
-        for (i in 1..quantity) { racingCars.add(RacingCar(position)) }
-        return racingCars.toList()
+    fun generateRacingCars(settings: List<RacingCarSettingVO>): List<RacingCar> {
+        return settings.map { RacingCar(RacingCarPosition(it.initPosition)) }.toList()
     }
 }

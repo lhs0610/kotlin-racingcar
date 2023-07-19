@@ -17,11 +17,12 @@ object ResultView {
 
     private fun printStepHistory(stepHistory: StepHistoryDto) {
 
-        stepHistory.positions.forEach() {
-            for (i in 1..it) {
-                print(FOOTPRINTS_SYMBOL)
-            }
-            println()
-        }
+        val footPrints = stepHistory.positions.map {
+            val sb = StringBuilder()
+            repeat(it) { sb.append(FOOTPRINTS_SYMBOL) }
+            sb.toString()
+        }.toList()
+
+        for (footPrint in footPrints) { println(footPrint) }
     }
 }

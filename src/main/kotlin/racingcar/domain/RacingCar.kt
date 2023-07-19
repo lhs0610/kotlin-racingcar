@@ -6,18 +6,21 @@ class RacingCar(
     private var position: RacingCarPosition
 ) {
 
-    fun getDistance():Int {
+    fun getDistance(): Int {
         return position.distance
     }
 
     fun attemptMove(raceStrategy: RaceStrategy) {
-        if (!raceStrategy.allowMove()) {
-            return
+        if (raceStrategy.allowMove()) {
+            move()
         }
-        move()
     }
 
     private fun move() {
-        position += 1
+        position += MOVE_OFFSET
+    }
+
+    companion object {
+        private const val MOVE_OFFSET = 1
     }
 }

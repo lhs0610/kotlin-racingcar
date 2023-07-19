@@ -1,22 +1,23 @@
 package racingcar.domain
 
 import racingcar.component.RacingCarFactory
-import racingcar.constant.Message
+import racingcar.model.vo.RacingCarSettingVO
 import racingcar.strategy.RaceStrategy
 
-class RacingCarContainer(
-    racingCarQuantity: Int,
-    position: RacingCarPosition
+class RacingCarContainer private constructor(
+    settings: List<RacingCarSettingVO>
 ) {
-    private val racingCars: List<RacingCar>
-
-    init {
-        racingCars = RacingCarFactory.generateRacingCars(racingCarQuantity, position)
-    }
+    private val racingCars: List<RacingCar> = RacingCarFactory.generateRacingCars(settings)
 
     fun stepProgress(raceStrategy: RaceStrategy): List<Int> {
         racingCars.forEach() { it.attemptMove(raceStrategy) }
         return racingCars.getAllDistance()
+    }
+
+    companion object {
+        fun from(settings: List<RacingCarSettingVO>): RacingCarContainer {
+            return RacingCarContainer(settings)
+        }
     }
 }
 
