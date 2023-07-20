@@ -6,7 +6,7 @@ import racingcar.model.dto.StepHistoryDto
 import racingcar.model.vo.RacingCarSettingVO
 import racingcar.strategy.RaceStrategy
 
-object RaceGameService {
+object RacingGameService {
 
     private const val START_DISTANCE = 0
 

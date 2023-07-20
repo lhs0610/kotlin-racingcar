@@ -18,9 +18,7 @@ object ResultView {
     private fun printStepHistory(stepHistory: StepHistoryDto) {
 
         val footPrints = stepHistory.positions.map {
-            val sb = StringBuilder()
-            repeat(it) { sb.append(FOOTPRINTS_SYMBOL) }
-            sb.toString()
+            FOOTPRINTS_SYMBOL.repeat(it)
         }.toList()
 
         for (footPrint in footPrints) { println(footPrint) }
