@@ -9,7 +9,5 @@ fun main() {
 
     val race = Race()
     race.ready(input.getCarCount())
-    race.start(input.getTryCount())
-
-    race.end()
+    race.startAndDraw(input.getTryCount())
 }

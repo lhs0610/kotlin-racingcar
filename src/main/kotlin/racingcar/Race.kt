@@ -15,7 +15,7 @@ class Race {
         }
     }
 
-    fun start(tryCount: Int) {
+    fun startAndDraw(tryCount: Int) {
         println("")
         for (i in 0 until tryCount) {
             race()
@@ -28,10 +28,8 @@ class Race {
             if (RaceUtils.moveOrNot(MOVE_COUNT_CONDITION, randomNumber)) {
                 racingCar.move()
             }
+            ResultView.draw(racingCar.moveCount)
         }
-    }
-
-    fun end() {
-        ResultView.matchView(racingCarList)
+        println()
     }
 }
