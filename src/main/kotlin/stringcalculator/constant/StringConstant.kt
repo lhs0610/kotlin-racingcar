@@ -1,4 +1,4 @@
-package constant
+package stringcalculator.constant
 
 class StringConstant {
 

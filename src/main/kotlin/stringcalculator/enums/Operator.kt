@@ -1,4 +1,6 @@
-package enums
+package stringcalculator.enums
+
+import stringcalculator.constant.StringConstant
 
 enum class Operator(val operator: String, val calculation: (Int, Int) -> Int) {
     PLUS("+", { left, right -> left + right }),
@@ -8,13 +10,13 @@ enum class Operator(val operator: String, val calculation: (Int, Int) -> Int) {
             left, right -> require(right != 0) { "${ErrorCode.ERROR_DIVIDER_CANNOT_ZERO.code }: 나누는 수는 0이 될 수 없습니다." }
             left / right
         }
-    );
+    ),
+    NONE(StringConstant.EMPTY, { _, _ -> 0 });
 
     companion object {
-        private val mapping = enumValues<Operator>().associate { it.operator to it.calculation }
-
-        fun getMapping(): Map<String, (Int, Int) -> Int> {
-            return mapping
+        private val mapping = values().associate { it.operator to it.calculation }
+        fun contains(operator: String): Boolean {
+            return mapping.containsKey(operator)
         }
 
         fun calculate(operator: String, left: Int, right: Int): Int {

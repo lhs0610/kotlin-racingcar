@@ -1,11 +1,13 @@
-import constant.StringConstant
-import enums.ErrorCode
-import enums.Operator
+package stringbasedcalculator
+
+import stringcalculator.constant.StringConstant
+import stringcalculator.enums.ErrorCode
+import stringcalculator.enums.Operator
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ExpectSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldStartWith
-import utilities.StringBasedCalculator
+import stringcalculator.component.StringBasedCalculator
 
 class StringBasedCalculatorTest : ExpectSpec({
 

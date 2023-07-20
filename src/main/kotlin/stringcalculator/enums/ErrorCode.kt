@@ -1,4 +1,4 @@
-package enums
+package stringcalculator.enums
 
 enum class ErrorCode(var code: String) {
     ERROR_EXPRESSION_NOT_NULL_OR_BLANK("E001"),

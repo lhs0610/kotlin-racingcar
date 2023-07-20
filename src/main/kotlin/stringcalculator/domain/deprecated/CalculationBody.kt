@@ -1,8 +1,8 @@
-package domain
+package stringcalculator.domain.deprecated
 
-import constant.StringConstant
-import enums.ErrorCode
-import enums.Operator
+import stringcalculator.constant.StringConstant
+import stringcalculator.enums.ErrorCode
+import stringcalculator.enums.Operator
 
 @Deprecated("not used")
 class CalculationBody(
@@ -17,7 +17,7 @@ class CalculationBody(
             val split = expression.split(StringConstant.BLANK)
             //연산자 목록에 포함된 값이면 true, 아니면 false
             val separate = split.groupBy {
-                Operator.getMapping().containsKey(it)
+                Operator.contains(it)
             }
 
             val operators = separate[true] ?: mutableListOf()
