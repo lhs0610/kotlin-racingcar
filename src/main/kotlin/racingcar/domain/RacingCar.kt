@@ -7,6 +7,10 @@ class RacingCar(
     private var position: RacingCarPosition
 ) {
 
+    init {
+        require(racerName.length <=5 ) {}
+    }
+
     fun getDistance(): Int {
         return position.distance
     }

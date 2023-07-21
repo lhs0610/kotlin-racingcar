@@ -2,10 +2,10 @@ package racingcar.component
 
 import racingcar.domain.RacingCar
 import racingcar.domain.RacingCarPosition
-import racingcar.model.vo.RacingCarSettingVO
+import racingcar.model.RacingCarSetting
 
 object RacingCarFactory {
-    fun generateRacingCars(settings: List<RacingCarSettingVO>): List<RacingCar> {
-        return settings.map { RacingCar(RacingCarPosition(it.initPosition)) }.toList()
+    fun generateRacingCars(settings: List<RacingCarSetting>): List<RacingCar> {
+        return settings.map { RacingCar(it.racerName, RacingCarPosition(it.initPosition)) }.toList()
     }
 }

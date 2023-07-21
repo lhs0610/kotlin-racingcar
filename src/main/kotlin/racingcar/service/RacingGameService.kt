@@ -1,21 +1,19 @@
 package racingcar.service
 
 import racingcar.domain.RacingCarContainer
-import racingcar.model.dto.RaceHistoryDto
-import racingcar.model.dto.StepHistoryDto
-import racingcar.model.vo.RacingCarSettingVO
+import racingcar.model.RaceHistory
+import racingcar.model.RaceSetting
+import racingcar.model.StepHistory
 import racingcar.strategy.RaceStrategy
 
 object RacingGameService {
 
-    private const val START_DISTANCE = 0
+    fun startRacingGame(raceSetting: RaceSetting, raceStrategy: RaceStrategy): RaceHistory {
+        val racingCarContainer = RacingCarContainer.from(raceSetting.racingcarSettings)
 
-    fun startRacingGame(racingcarQuantity: Int, totalStep: Int, raceStrategy: RaceStrategy): RaceHistoryDto {
-        val racingCarContainer = RacingCarContainer.from(List(racingcarQuantity) { RacingCarSettingVO(START_DISTANCE) })
-
-        return (0 until totalStep).map {
+        return (0 until raceSetting.totalStep).map {
             val stepResult = racingCarContainer.stepProgress(raceStrategy)
-            StepHistoryDto(stepResult)
-        }.let(::RaceHistoryDto)
+            StepHistory(stepResult)
+        }.let(::RaceHistory)
     }
 }
