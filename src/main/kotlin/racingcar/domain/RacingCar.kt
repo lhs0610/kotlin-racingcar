@@ -3,7 +3,8 @@ package racingcar.domain
 import racingcar.strategy.RaceStrategy
 
 class RacingCar(
-    private var position: RacingCarPosition,
+    val name: String,
+    private var position: RacingCarPosition
 ) {
 
     fun getDistance(): Int {
