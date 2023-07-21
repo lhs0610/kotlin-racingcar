@@ -38,6 +38,13 @@ object InputView {
             return false
         }
 
+        val originSize = split.size
+        val distinctSize = split.distinct().size
+        if (originSize != distinctSize) {
+            println(Message.INVALID_INPUT_VALUE_DUPLICATE_NAME_EXIST.message)
+            return false
+        }
+
         return true;
     }
 

@@ -32,7 +32,7 @@ object ResultView {
             { it.distance }, { it.racerName }
         ).toSortedMap(compareBy<Int> { it }.reversed())
 
-        val winners = reverseSortedGroups.values.first()
-        println("$winners 가 최종 우승했습니다.")
+        val winnerGroup = reverseSortedGroups.entries.first()
+        println("${winnerGroup.value}(${winnerGroup.key}) 가 최종 우승했습니다.")
     }
 }
