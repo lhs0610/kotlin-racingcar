@@ -21,7 +21,7 @@ class RacingGameServiceTest : ExpectSpec({
                 RacingCarSetting("JN3", 0)
             )
 
-            val raceSetting = RaceSetting(totalStep, carSettings)
+            val raceSetting = RaceSetting(carSettings, totalStep)
             val raceHistory = RacingGameService.startRacingGame(raceSetting) { true }
 
             val lastCarInfos = raceHistory.stepHistories.last().stepRacingCarInfos

@@ -1,3 +1,3 @@
 package racingcar.model
 
-data class UserInput(val racingcarQuantity: Int, val totalStep: Int)
+data class UserInput(val entries: List<String>, val totalStep: Int)

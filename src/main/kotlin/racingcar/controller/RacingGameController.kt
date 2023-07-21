@@ -9,11 +9,10 @@ object RacingGameController {
 
     fun startRacingGame() {
         val userInput = InputView.getUserInput()
-        val result = RacingGameService.startRacingGame(
-            racingcarQuantity = userInput.racingcarQuantity,
-            totalStep = userInput.totalStep,
+        /*val result = RacingGameService.startRacingGame(
+            raceSetting = null,
             raceStrategy = RandomStrategy
         )
-        ResultView.printRacingGameResult(result)
+        ResultView.printRacingGameResult(result)*/
     }
 }
