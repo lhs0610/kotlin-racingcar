@@ -9,9 +9,10 @@ class RacingCarTest : ExpectSpec({
 
     context("RacingCar test") {
         expect("construct test") {
-            val racingCar = RacingCar(RacingCarPosition(0))
+            val racingCar = RacingCar("Jinni", RacingCarPosition(0))
 
             racingCar.getDistance() shouldBe 0
+            racingCar.name shouldBe "Jinni"
         }
         expect("move test") {
             val racingCar = RacingCar(RacingCarPosition(0))
