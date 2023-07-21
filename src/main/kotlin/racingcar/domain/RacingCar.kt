@@ -3,7 +3,7 @@ package racingcar.domain
 import racingcar.strategy.RaceStrategy
 
 class RacingCar(
-    val name: String,
+    val racerName: String,
     private var position: RacingCarPosition
 ) {
 
