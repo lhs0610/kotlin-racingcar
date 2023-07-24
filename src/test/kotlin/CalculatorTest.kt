@@ -1,3 +1,4 @@
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.annotation.DisplayName
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -5,6 +6,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 
 const val successStrValue = "2 + 3 * 4 / 2"
+const val failureStrValue = "2 + 3 * 4 2 2"
 
 @DisplayName("Step2 : 문자열 계산기")
 class CalculatorTest : FunSpec({
@@ -48,7 +50,9 @@ class CalculatorTest : FunSpec({
     }
 
     test("사칙연산 순서에 올바르지 않는 문자열을 구별한다.") {
-
+        shouldThrow<IllegalArgumentException> {
+            Calculator(failureStrValue).run()
+        }
     }
 
     test("올바르지 않은 문자의 입력을 구별한다.") {
