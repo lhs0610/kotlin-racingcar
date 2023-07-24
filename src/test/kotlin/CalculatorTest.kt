@@ -33,6 +33,13 @@ class CalculatorTest : FunSpec({
         actual.value shouldNotBe "3"
     }
 
+    test("각 사칙연산에 대한 오퍼레이터를 구현한다.") {
+        val n1 = Number(3.0)
+        val n2 = Number(2.0)
+        (n1 + n2).value shouldBe 5.0
+        (n1 - n2).value shouldBe 1.0
+        (n1 * n2).value shouldBe 6.0
+        (n1 / n2).value shouldBe 1.5
     }
 
     test("슷자가 아닌 문자의 입력을 구별한다.") {
