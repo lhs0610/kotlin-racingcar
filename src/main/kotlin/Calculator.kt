@@ -16,19 +16,19 @@ class Calculator(val strValue: String) {
         result = Number(strList[0])
         for (idx in 1 until strList.size step 2) {
             val op = strList[idx]
-            val n2 = Number(strList[idx + 1])
+            val n = Number(strList[idx + 1])
 
-            result = calculate(result, n2, op)
+            result = calculate(n, op)
         }
         return result
     }
 
-    private fun calculate(n1: Number, n2: Number, op: String): Number {
+    private fun calculate(n: Number, op: String): Number {
         return when (op) {
-            "+" -> n1 + n2
-            "-" -> n1 - n2
-            "*" -> n1 * n2
-            "/" -> n1 / n2
+            "+" -> result + n
+            "-" -> result - n
+            "*" -> result * n
+            "/" -> result / n
             else -> throw IllegalArgumentException()
         }
     }
