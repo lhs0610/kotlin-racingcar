@@ -40,7 +40,7 @@ object StringBasedCalculator {
     private fun convertStringToIntCheckNumeric(origin: String): Int {
         return origin.toIntOrNull() ?: throw java.lang.IllegalArgumentException("${ErrorCode.ERROR_IS_NOT_NUMERIC.code}: \'${origin}\'은 숫자가 아닙니다.")
     }
-    
+
     private fun getExistOperator(operator: String): String {
         require(Operator.contains(operator)) { "${ErrorCode.ERROR_NOT_ALLOWED_SYMBOL.code}: 잘못된 수식 \'${operator}\'이 포함되어 있습니다." }
         return operator

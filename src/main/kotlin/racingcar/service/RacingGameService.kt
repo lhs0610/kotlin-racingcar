@@ -9,7 +9,7 @@ import racingcar.strategy.RaceStrategy
 object RacingGameService {
 
     fun startRacingGame(raceSetting: RaceSetting, raceStrategy: RaceStrategy): RaceHistory {
-        val racingCarContainer = RacingCarContainer.from(raceSetting.racingcarSettings)
+        val racingCarContainer = RacingCarContainer.from(raceSetting.racingCarSettings)
 
         return (0 until raceSetting.totalStep).map {
             val stepResult = racingCarContainer.stepProgress(raceStrategy)

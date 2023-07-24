@@ -1,11 +1,11 @@
 package racingcar.model
 
-data class RaceSetting(val racingcarSettings: List<RacingCarSetting>, val totalStep: Int) {
+data class RaceSetting(val racingCarSettings: List<RacingCarSetting>, val totalStep: Int) {
     companion object {
         fun from(userInput: UserInput): RaceSetting {
-            val racingcarSettings = userInput.entries.map { RacingCarSetting(it) }
+            val racingCarSettings = userInput.getEntries().map { RacingCarSetting(it) }
 
-            return RaceSetting(racingcarSettings, userInput.totalStep)
+            return RaceSetting(racingCarSettings, userInput.getTotalStep())
         }
     }
 }

@@ -2,6 +2,7 @@ package racingcar.view
 
 import racingcar.model.RaceHistory
 import racingcar.model.StepHistory
+import kotlin.collections.MutableMap.MutableEntry
 
 object ResultView {
 
@@ -9,13 +10,12 @@ object ResultView {
 
     fun printRacingGameResult(raceHistory: RaceHistory) {
 
-        raceHistory.stepHistories.forEach() {
+        raceHistory.stepHistories.forEach {
             printStepHistory(it)
             println()
         }
 
-        val lastStepHistory = raceHistory.stepHistories.last()
-        printWinners(lastStepHistory)
+        printWinners(raceHistory.getWinnerGroupEntry())
     }
 
     private fun printStepHistory(stepHistory: StepHistory) {
@@ -27,12 +27,7 @@ object ResultView {
         footPrints.forEach { println(it) }
     }
 
-    private fun printWinners(lastStepHistory: StepHistory) {
-        val reverseSortedGroups = lastStepHistory.stepRacingCarInfos.groupBy(
-            { it.distance }, { it.racerName }
-        ).toSortedMap(compareBy<Int> { it }.reversed())
-
-        val winnerGroup = reverseSortedGroups.entries.first()
-        println("${winnerGroup.value}(${winnerGroup.key}) 가 최종 우승했습니다.")
+    private fun printWinners(winnerGroupEntry: MutableEntry<Int, List<String>>) {
+        println("${winnerGroupEntry.value}(${winnerGroupEntry.key}) 가 최종 우승했습니다.")
     }
 }

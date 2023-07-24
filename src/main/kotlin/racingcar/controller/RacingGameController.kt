@@ -9,6 +9,7 @@ import racingcar.view.ResultView
 object RacingGameController {
 
     fun startRacingGame() {
+
         val userInput = InputView.getUserInput()
         val result = RacingGameService.startRacingGame(
             raceSetting = RaceSetting.from(userInput),

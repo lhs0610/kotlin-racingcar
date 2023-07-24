@@ -1,19 +1,18 @@
 package racingcar.domain
 
-import racingcar.constant.Message
+import racingcar.model.RacerName
 import racingcar.strategy.RaceStrategy
 
-class RacingCar(
-    val racerName: String,
-    private var position: RacingCarPosition
+class RacingCar private constructor(
+    private val racerName: RacerName,
+    private var distance: RacingCarDistance
 ) {
-
-    init {
-        require(racerName.length <=5 ) { Message.INVALID_INPUT_VALUE_CANNOT_HIGHER_THEN_FIVE.message }
+    fun getDistance(): Int {
+        return distance.distance
     }
 
-    fun getDistance(): Int {
-        return position.distance
+    fun getRacerName(): String {
+        return racerName.racerName
     }
 
     fun attemptMove(raceStrategy: RaceStrategy) {
@@ -23,10 +22,14 @@ class RacingCar(
     }
 
     private fun move() {
-        position += MOVE_OFFSET
+        distance += MOVE_OFFSET
     }
 
     companion object {
         private const val MOVE_OFFSET = 1
+
+        fun of(racerName: String, distance: Int): RacingCar {
+            return RacingCar(RacerName(racerName), RacingCarDistance(distance))
+        }
     }
 }
