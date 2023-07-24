@@ -2,6 +2,7 @@ import io.kotest.core.annotation.DisplayName
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 
 const val successStrValue = "2 + 3 * 4 / 2"
 
@@ -26,7 +27,11 @@ class CalculatorTest : FunSpec({
         actual.strQueue.poll() shouldBe "2"
     }
 
-    test("각 사칙연산에 대한 기능을 구현한다.") {
+    test("숫자 객체를 구현한다.") {
+        val actual = Number("2")
+        actual.value shouldBe 2
+        actual.value shouldNotBe "3"
+    }
 
     }
 
