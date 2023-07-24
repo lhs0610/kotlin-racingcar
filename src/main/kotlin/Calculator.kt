@@ -1,0 +1,1 @@
+class Calculator(val strValue: String)

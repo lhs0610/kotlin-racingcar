@@ -1,11 +1,17 @@
 import io.kotest.core.annotation.DisplayName
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
+
+const val successStrValue = "2 + 3 * 4 / 2"
 
 @DisplayName("Step2 : 문자열 계산기")
 class CalculatorTest : FunSpec({
 
     test("사칙연산 문자열을 입력 받는 계산기를 생성한다.") {
-
+        val actual = Calculator(successStrValue)
+        actual.shouldNotBeNull()
+        actual.strValue shouldBe successStrValue
     }
 
     test("사칙연산 문자열을 분리한다.") {
