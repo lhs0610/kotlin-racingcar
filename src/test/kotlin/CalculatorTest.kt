@@ -15,7 +15,15 @@ class CalculatorTest : FunSpec({
     }
 
     test("사칙연산 문자열을 분리한다.") {
-
+        val actual = Calculator(successStrValue)
+        actual.strQueue.size shouldBe 7
+        actual.strQueue.poll() shouldBe "2"
+        actual.strQueue.poll() shouldBe "+"
+        actual.strQueue.poll() shouldBe "3"
+        actual.strQueue.poll() shouldBe "*"
+        actual.strQueue.poll() shouldBe "4"
+        actual.strQueue.poll() shouldBe "/"
+        actual.strQueue.poll() shouldBe "2"
     }
 
     test("각 사칙연산에 대한 기능을 구현한다.") {
