@@ -54,8 +54,4 @@ class CalculatorTest : FunSpec({
             Calculator(failureStrValue).run()
         }
     }
-
-    test("올바르지 않은 문자의 입력을 구별한다.") {
-
-    }
 })
