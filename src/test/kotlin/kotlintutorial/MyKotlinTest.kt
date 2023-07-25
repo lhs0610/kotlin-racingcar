@@ -1,9 +1,9 @@
 package kotlintutorial
 
-import tutorial.domain.person.Person
 import io.kotest.core.spec.style.ExpectSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeTypeOf
+import tutorial.domain.person.Person
 
 class MyKotlinTest : ExpectSpec({
 
@@ -23,11 +23,11 @@ class MyKotlinTest : ExpectSpec({
         expect("data class test") {
             val person = Person(name = "심의진", age = 22, nickname = "Jinni01")
 
-            //use copy function from data class
+            // use copy function from data class
             val other = person.copy(name = "신의진", nickname = "Jinni001")
 
             val shouldBeTypeOf = person.shouldBeTypeOf<Person>()
-            //same reference
+            // same reference
             shouldBeTypeOf.nickname = "Jinni02"
 
             println(person)
@@ -36,5 +36,4 @@ class MyKotlinTest : ExpectSpec({
             person.age shouldBe other.age
         }
     }
-
 })
