@@ -10,21 +10,21 @@ class RacingCarPositionTest : ExpectSpec({
         expect("construct test") {
             val position = RacingCarDistance(0)
 
-            position.distance shouldBe 0
+            position.value shouldBe 0
         }
 
         expect("plus test") {
             val position = RacingCarDistance(0)
             val moved = position + 3
 
-            moved.distance shouldBe 3
+            moved.value shouldBe 3
         }
 
         expect("minus test") {
             val position = RacingCarDistance(5)
             val moved = position - 7
 
-            moved.distance shouldBe 0
+            moved.value shouldBe 0
         }
     }
 })

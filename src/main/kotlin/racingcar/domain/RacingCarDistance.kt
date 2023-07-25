@@ -1,15 +1,15 @@
 package racingcar.domain
 
 @JvmInline
-value class RacingCarDistance(val distance: Int) {
+value class RacingCarDistance(val value: Int) {
 
     operator fun plus(value: Int): RacingCarDistance {
-        val result = getResultOrZero(distance + value)
+        val result = getResultOrZero(this.value + value)
         return RacingCarDistance(result)
     }
 
     operator fun minus(value: Int): RacingCarDistance {
-        val result = getResultOrZero(distance - value)
+        val result = getResultOrZero(this.value - value)
         return RacingCarDistance(result)
     }
 

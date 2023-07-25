@@ -3,16 +3,16 @@ package racingcar.domain
 import racingcar.model.RacerName
 import racingcar.strategy.RaceStrategy
 
-class RacingCar private constructor(
+class RacingCar(
     private val racerName: RacerName,
     private var distance: RacingCarDistance
 ) {
     fun getDistance(): Int {
-        return distance.distance
+        return distance.value
     }
 
     fun getRacerName(): String {
-        return racerName.racerName
+        return racerName.value
     }
 
     fun attemptMove(raceStrategy: RaceStrategy) {

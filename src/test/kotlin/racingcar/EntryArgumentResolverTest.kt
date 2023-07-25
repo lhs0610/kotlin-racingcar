@@ -8,43 +8,37 @@ class EntryArgumentResolverTest : ExpectSpec({
 
     context("EntryArgumentResolver test") {
         expect("validate test - valid format") {
-            val resolver = EntryArgumentResolver()
-            val validate = resolver.validate("test1,test2,test3")
+            val validate = EntryArgumentResolver.validate("test1,test2,test3")
 
             validate shouldBe true
         }
 
         expect("validate test - invalid format 1") {
-            val resolver = EntryArgumentResolver()
-            val validate = resolver.validate(",,,")
+            val validate = EntryArgumentResolver.validate(",,,")
 
             validate shouldBe false
         }
 
         expect("validate test - invalid format 2") {
-            val resolver = EntryArgumentResolver()
-            val validate = resolver.validate(",test2,test3")
+            val validate = EntryArgumentResolver.validate(",test2,test3")
 
             validate shouldBe false
         }
 
         expect("validate test - invalid format 3") {
-            val resolver = EntryArgumentResolver()
-            val validate = resolver.validate("test2,test3,")
+            val validate = EntryArgumentResolver.validate("test2,test3,")
 
             validate shouldBe false
         }
 
         expect("validate test - racer name length > 5") {
-            val resolver = EntryArgumentResolver()
-            val validate = resolver.validate("tester1,tester2")
+            val validate = EntryArgumentResolver.validate("tester1,tester2")
 
             validate shouldBe false
         }
 
         expect("resolve test") {
-            val resolver = EntryArgumentResolver()
-            val resolve = resolver.resolve("test1,test2,test3")
+            val resolve = EntryArgumentResolver.resolve("test1,test2,test3")
 
             resolve.value shouldBe listOf("test1", "test2", "test3")
         }

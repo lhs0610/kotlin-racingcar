@@ -5,6 +5,7 @@ import racingcar.converter.InputArgumentResolvers
 import racingcar.model.EntryInput
 import racingcar.model.TotalStepInput
 import racingcar.model.UserInput
+import racingcar.validator.InputArgumentValidators
 import kotlin.reflect.KClass
 
 object InputView {
@@ -19,7 +20,7 @@ object InputView {
     private fun <T : Any> getCLIInput(type: KClass<T>, message: String): T {
         println(message)
         var input = readln()
-        while (!InputArgumentResolvers.validate(type, input)) {
+        while (!InputArgumentValidators.validate(type, input)) {
             input = readln()
         }
         return InputArgumentResolvers.resolve(type, input)
