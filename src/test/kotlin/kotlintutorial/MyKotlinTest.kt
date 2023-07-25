@@ -11,7 +11,7 @@ class MyKotlinTest : ExpectSpec({
         expect("named argument test") {
             val person = Person(name = "심의진", age = 22, nickname = "Jinni01")
 
-            person.name shouldBe "삼의진"
+            person.name shouldBe "심의진"
         }
 
         expect("nullable parameter test") {
