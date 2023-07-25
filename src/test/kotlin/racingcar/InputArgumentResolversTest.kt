@@ -9,16 +9,20 @@ import racingcar.model.TotalStepInput
 class InputArgumentResolversTest : ExpectSpec({
 
     context("InputArgumentResolvers test") {
-        expect("resolve test - EntryArgumentResolver") {
-            val resolve = InputArgumentResolvers.resolve(EntryInput::class, "JN1,JN2,JN3")
+        context("EntryArgumentResolver") {
+            expect("resolve test") {
+                val resolve = InputArgumentResolvers.resolve(EntryInput::class, "JN1,JN2,JN3")
 
-            resolve.value shouldBe listOf("JN1", "JN2", "JN3")
+                resolve.value shouldBe listOf("JN1", "JN2", "JN3")
+            }
         }
 
-        expect("resolve test - TotalStepArgumentResolver") {
-            val resolve = InputArgumentResolvers.resolve(TotalStepInput::class, "11034")
+        context("TotalStepArgumentResolver") {
+            expect("resolve test") {
+                val resolve = InputArgumentResolvers.resolve(TotalStepInput::class, "11034")
 
-            resolve.value shouldBe 11034
+                resolve.value shouldBe 11034
+            }
         }
     }
 })

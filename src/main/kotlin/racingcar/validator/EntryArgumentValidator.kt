@@ -33,6 +33,4 @@ object EntryArgumentValidator : InputArgumentValidator {
 
         return originSize == distinctSize
     }
-
-
 }
