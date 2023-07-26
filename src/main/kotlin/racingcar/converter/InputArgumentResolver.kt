@@ -1,5 +1,5 @@
 package racingcar.converter
 
-interface InputArgumentResolver<T> {
+fun interface InputArgumentResolver<T> {
     fun resolve(input: String): T
 }

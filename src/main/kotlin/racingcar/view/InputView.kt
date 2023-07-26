@@ -8,7 +8,10 @@ import racingcar.model.UserInput
 import racingcar.validator.InputArgumentValidators
 import kotlin.reflect.KClass
 
-object InputView {
+class InputView(
+    private val resolvers: InputArgumentResolvers,
+    private val validators: InputArgumentValidators
+) {
 
     fun getUserInput(): UserInput {
         val entryInput = getCLIInput(EntryInput::class, Message.INPUT_PARAMETER_ENTRY.message)
@@ -20,9 +23,9 @@ object InputView {
     private fun <T : Any> getCLIInput(type: KClass<T>, message: String): T {
         println(message)
         var input = readln()
-        while (!InputArgumentValidators.validate(type, input)) {
+        while (!validators.validate(type, input)) {
             input = readln()
         }
-        return InputArgumentResolvers.resolve(type, input)
+        return resolvers.resolve(type, input)
     }
 }

@@ -1,5 +1,5 @@
 package racingcar.validator
 
-interface InputArgumentValidator {
+fun interface InputArgumentValidator {
     fun validate(input: String): Boolean
 }
