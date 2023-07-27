@@ -1,14 +1,14 @@
 package racingcar
 
-import io.kotest.core.spec.style.ExpectSpec
+import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.ints.shouldBeInRange
 import racingcar.strategy.RandomStrategy
 
-class RandomStrategyTest : ExpectSpec({
+class RandomStrategyTest : BehaviorSpec({
 
-    context("RandomStrategy test") {
-        expect("repeat test") {
-            val testRange = (1..5)
+    Given("test range") {
+        val testRange = (1..5)
+        When("RandomStrategy의 allowMove 메서드 반환값을 정수형으로 바꿔 합산했을 때") {
             val result = testRange.reduce { result, _ ->
                 result + if (RandomStrategy.allowMove()) {
                     1
@@ -16,8 +16,9 @@ class RandomStrategyTest : ExpectSpec({
                     0
                 }
             }
-
-            result shouldBeInRange testRange
+            Then("총 합은 test range안에 들어야 한다") {
+                result shouldBeInRange testRange
+            }
         }
     }
 })

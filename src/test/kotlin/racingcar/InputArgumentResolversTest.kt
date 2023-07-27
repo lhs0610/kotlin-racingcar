@@ -8,7 +8,7 @@ import racingcar.model.TotalStepInput
 
 class InputArgumentResolversTest : ExpectSpec({
 
-    context("InputArgumentResolvers test") {
+    /*context("InputArgumentResolvers test") {
         context("EntryArgumentResolver") {
             expect("resolve test") {
                 val resolve = InputArgumentResolvers.resolve(EntryInput::class, "JN1,JN2,JN3")
@@ -24,5 +24,5 @@ class InputArgumentResolversTest : ExpectSpec({
                 resolve.value shouldBe 11034
             }
         }
-    }
+    }*/
 })

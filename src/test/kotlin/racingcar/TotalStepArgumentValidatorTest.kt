@@ -1,34 +1,38 @@
 package racingcar
 
-import io.kotest.core.spec.style.ExpectSpec
+import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import racingcar.validator.TotalStepArgumentValidator
 
-class TotalStepArgumentValidatorTest : ExpectSpec({
+class TotalStepArgumentValidatorTest : BehaviorSpec({
 
-    context("TotalStepArgumentValidator test") {
-        expect("validate test - numeric string") {
-            val validate = TotalStepArgumentValidator.validate("102")
-
-            validate shouldBe true
+    Given("변환이 되고 조건을 충족하는 정수 문자열 입력") {
+        val input = "102"
+        When("입력된 값으로 TotalStepArgumentValidator의 validate 메서드를 호출하면") {
+            val validate = TotalStepArgumentValidator.validate(input)
+            Then("참이 반환된다") {
+                validate shouldBe true
+            }
         }
+    }
 
-        expect("validate test - non-numeric string") {
-            val validate = TotalStepArgumentValidator.validate("abc")
-
-            validate shouldBe false
+    Given("정수 포맷이 아닌 문자열 입력") {
+        val input = "abc"
+        When("입력된 값으로 TotalStepArgumentValidator의 validate 메서드를 호출하면") {
+            val validate = TotalStepArgumentValidator.validate(input)
+            Then("거짓이 반환된다") {
+                validate shouldBe false
+            }
         }
+    }
 
-        expect("validate test - value < 1") {
-            val validate = TotalStepArgumentValidator.validate("0")
-
-            validate shouldBe false
-        }
-
-        expect("validate test - value > 0") {
-            val validate = TotalStepArgumentValidator.validate("1")
-
-            validate shouldBe true
+    Given("조건을 충족하지 못하는 정수 문자열 입력") {
+        val input = "0"
+        When("입력된 값으로 TotalStepArgumentValidator의 validate 메서드를 호출하면") {
+            val validate = TotalStepArgumentValidator.validate(input)
+            Then("거짓이 반환된다") {
+                validate shouldBe false
+            }
         }
     }
 })

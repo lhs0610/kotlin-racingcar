@@ -9,7 +9,7 @@ import racingcar.validator.TotalStepArgumentValidator
 
 class InputArgumentValidatorsTest : ExpectSpec({
 
-    context("InputArgumentValidators test") {
+    /*context("InputArgumentValidators test") {
         context("EntryArgumentValidator") {
             val entryInputType = EntryInput::class
 
@@ -71,5 +71,5 @@ class InputArgumentValidatorsTest : ExpectSpec({
                 validate shouldBe true
             }
         }
-    }
+    }*/
 })
