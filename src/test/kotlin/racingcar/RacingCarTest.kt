@@ -23,7 +23,7 @@ class RacingCarTest : BehaviorSpec({
         val racerName = "JinniJinni"
         val initDistance = 0
         When("주어진 인자로 RacingCar를 생성하면") {
-            Then("예외가 발생한다") {
+            Then("IllegalArgumentException을 던진다") {
                 shouldThrow<IllegalArgumentException> { RacingCar.of(racerName, initDistance) }
             }
         }

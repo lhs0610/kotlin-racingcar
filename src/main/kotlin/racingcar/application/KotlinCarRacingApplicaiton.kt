@@ -1,9 +1,9 @@
 package racingcar.application
 
 import racingcar.config.Configuration
+import racingcar.config.RacingGameConfiguration
 import racingcar.controller.RacingGameController
 
 fun main() {
-    val controller = RacingGameController(Configuration.getRacingGameConfig())
-    controller.startRacingGame()
+    RacingGameController.startRacingGame(RacingGameConfiguration)
 }

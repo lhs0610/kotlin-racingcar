@@ -7,11 +7,9 @@ import racingcar.strategy.RandomStrategy
 import racingcar.view.InputView
 import racingcar.view.ResultView
 
-class RacingGameController(
-    private val config: Configuration
-) {
-    fun startRacingGame() {
-        val inputView = InputView(config.resolvers, config.validators)
+object RacingGameController {
+    fun startRacingGame(config: Configuration) {
+        val inputView = InputView(config.getResolvers(), config.getValidators())
         val userInput = inputView.getUserInput()
         val result = RacingGameService.startRacingGame(
             raceSetting = RaceSetting.from(userInput),
