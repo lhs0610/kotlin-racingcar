@@ -1,30 +1,42 @@
 package racingcar
 
-import io.kotest.core.spec.style.ExpectSpec
+import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import racingcar.domain.RacingCarPosition
+import racingcar.domain.RacingCarDistance
 
-class RacingCarPositionTest : ExpectSpec({
+class RacingCarPositionTest : BehaviorSpec({
 
-    context("RacingCarPosition test") {
-        expect("construct test") {
-            val position = RacingCarPosition(0)
-
-            position.distance shouldBe 0
+    Given("초기 위치값") {
+        val initDistance = 0
+        When("시작 위치를 생성자 인자로 RacingCarPosition을 생성하면") {
+            val position = RacingCarDistance(initDistance)
+            Then("프로퍼티에 동일한 값이 설정된 RacingCarPosition을 반환한다") {
+                position.value shouldBe initDistance
+            }
         }
+    }
 
-        expect("plus test") {
-            val position = RacingCarPosition(0)
-            val moved = position + 3
-
-            moved.distance shouldBe 3
+    Given("초기 위치값, 전진 거리") {
+        val initDistance = 0
+        val change = 3
+        When("거리가 ${initDistance}로 초기화된 RacingCarPosition에 ${change}을 더하면") {
+            val position = RacingCarDistance(initDistance)
+            val moved = position + change
+            Then("${change}만큼 더해진 거리를 가진 RacingCarPosition을 반환한다") {
+                moved.value shouldBe initDistance + change
+            }
         }
+    }
 
-        expect("minus test") {
-            val position = RacingCarPosition(5)
-            val moved = position - 7
-
-            moved.distance shouldBe 0
+    Given("초기 위치값, 후진 거리") {
+        val initDistance = 5
+        val change = 3
+        When("거리가 ${initDistance}로 초기화된 RacingCarPosition에 ${change}을 더하면") {
+            val position = RacingCarDistance(initDistance)
+            val moved = position - change
+            Then("${change}만큼 빠진 거리를 가진 RacingCarPosition을 반환한다") {
+                moved.value shouldBe initDistance - change
+            }
         }
     }
 })

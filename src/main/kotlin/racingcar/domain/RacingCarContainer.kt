@@ -1,26 +1,22 @@
 package racingcar.domain
 
-import racingcar.component.RacingCarFactory
-import racingcar.model.vo.RacingCarSettingVO
+import racingcar.model.RacingCarSetting
+import racingcar.model.StepRacingCarInfo
 import racingcar.strategy.RaceStrategy
 
 class RacingCarContainer private constructor(
-    settings: List<RacingCarSettingVO>
+    private val racingCars: List<RacingCar>
 ) {
-    private val racingCars: List<RacingCar> = RacingCarFactory.generateRacingCars(settings)
+    fun stepProgress(raceStrategy: RaceStrategy): List<StepRacingCarInfo> {
+        racingCars.forEach { it.attemptMove(raceStrategy) }
 
-    fun stepProgress(raceStrategy: RaceStrategy): List<Int> {
-        racingCars.forEach() { it.attemptMove(raceStrategy) }
-        return racingCars.getAllDistance()
+        return racingCars.map { StepRacingCarInfo.from(it) }
     }
 
     companion object {
-        fun from(settings: List<RacingCarSettingVO>): RacingCarContainer {
-            return RacingCarContainer(settings)
+        fun from(settings: List<RacingCarSetting>): RacingCarContainer {
+            val racingCars = settings.map { RacingCar.of(it.racerName, it.initPosition) }.toList()
+            return RacingCarContainer(racingCars)
         }
     }
-}
-
-fun List<RacingCar>.getAllDistance(): List<Int> {
-    return this.map { it.getDistance() }
 }

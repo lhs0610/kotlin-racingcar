@@ -1,48 +1,31 @@
 package racingcar.view
 
 import racingcar.constant.Message
-import racingcar.model.dto.UserInputDto
+import racingcar.converter.InputArgumentResolvers
+import racingcar.model.EntryInput
+import racingcar.model.TotalStepInput
+import racingcar.model.UserInput
+import racingcar.validator.InputArgumentValidators
+import kotlin.reflect.KClass
 
-object InputView {
+class InputView(
+    private val resolvers: InputArgumentResolvers,
+    private val validators: InputArgumentValidators
+) {
 
-    private const val MININUM_INPUT_VALUE = 1
+    fun getUserInput(): UserInput {
+        val entryInput = getCLIInput(EntryInput::class, Message.INPUT_PARAMETER_ENTRY.message)
+        val totalStepInput = getCLIInput(TotalStepInput::class, Message.INPUT_PARAMETER_TOTAL_STEP.message)
 
-    fun getUserInput(): UserInputDto {
-        val quantity = getCLIInput(Message.INPUT_PARAMETER_QUANTITY.message)
-        val totalStep = getCLIInput(Message.INPUT_PARAMETER_TOTAL_STEP.message)
-
-        return UserInputDto(quantity.toInt(), totalStep.toInt())
+        return UserInput(entryInput, totalStepInput)
     }
 
-    private fun getCLIInput(message: String): String {
+    private fun <T : Any> getCLIInput(type: KClass<T>, message: String): T {
         println(message)
         var input = readln()
-        while(!validateInput(input)) {
+        while (!validators.validate(type, input)) {
             input = readln()
         }
-        return input
-    }
-
-    private fun validateInput(input: String): Boolean {
-        if (!checkStringIsNumeric(input)) {
-            println(Message.INVALID_INPUT_FORTMAT.message)
-            return false
-        }
-
-        if (!checkValue(input.toInt())) {
-            println(Message.INVALID_INPUT_VALUE.message)
-            return false
-        }
-
-        return true
-    }
-
-    private fun checkStringIsNumeric(input: String): Boolean {
-        val toIntOrNull = input.toIntOrNull()
-        return toIntOrNull is Int
-    }
-
-    private fun checkValue(input: Int): Boolean {
-        return input >= MININUM_INPUT_VALUE
+        return resolvers.resolve(type, input)
     }
 }

@@ -1,6 +1,6 @@
 package stringcalculator.enums
 
-enum class ErrorCode(var code: String) {
+enum class ErrorCode(val code: String) {
     ERROR_EXPRESSION_NOT_NULL_OR_BLANK("E001"),
     ERROR_NOT_ALLOWED_SYMBOL("E002"),
     ERROR_IS_NOT_NUMERIC("E003"),

@@ -99,7 +99,7 @@ class StringBasedCalculatorTest : ExpectSpec({
         expect("나누기 연산 테스트") {
             val result = StringBasedCalculator.calculate(delimiter = StringConstant.BLANK, expression = "8 / 4")
 
-            result shouldBe 3
+            result shouldBe 2
         }
 
         expect("사칙 연산 테스트") {
